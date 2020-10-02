@@ -1,0 +1,29 @@
+@tailwind base;
+
+h1 {
+  @apply text-2xl;
+}
+h2 {
+  @apply text-xl;
+}
+h3 {
+  @apply text-lg;
+}
+a {
+  @apply text-blue-500;
+}
+
+a:hover {
+  @apply text-blue-400;
+  @apply underline;
+}
+
+@tailwind components;
+@tailwind utilities;
+
+/* html,
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    sans-serif;
+} */
