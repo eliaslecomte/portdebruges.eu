@@ -12,4 +12,4 @@ type ItemDetail = {
   Value: number,
 }
 
-export type rawCurrentDataResponse = Array<ItemDetail>;
+export type currentDataResponse = Array<ItemDetail>;

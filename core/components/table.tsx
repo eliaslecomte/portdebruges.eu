@@ -1,10 +1,13 @@
+// Copied from https://tailwindui.com/preview 🦕
 
-export type TableData = Array<{
+import { FC } from "react";
+
+type Props = Array<{
   title: string,
   value: string,
 }>;
 
-export default function Table({ }) {
+export const Table: FC<Props> = ({ }) => {
   return (
     <div>
       <dl>
@@ -45,3 +48,4 @@ export default function Table({ }) {
     )
   }
   
+  export default Table;

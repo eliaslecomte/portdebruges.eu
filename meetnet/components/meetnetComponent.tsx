@@ -2,11 +2,9 @@ import Temperature from '../../core/components/text/temperature';
 import Loading from '../../core/components/text/loading';
 import { WindIndication } from '../../core/enums';
 import { currentMeetnetData } from '../api';
-import type { formatData } from '../mapper';
 import WindSpeed from '../../core/components/text/windSpeed';
 import Direction from '../../core/components/text/direction';
-
-// Copied from https://tailwindui.com/preview 🦕
+import WindArrow from './windArrow';
 
 type Props = { 
   currentMeetnetData?: currentMeetnetData,
@@ -77,10 +75,11 @@ return (
             {currentMeetnetData?.windDirection ? <Direction value={currentMeetnetData.windDirection} /> : <Loading />}
           </dd>
         </div>
-        {/* <div className="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">       
-          <img className="object-center" src="/zeebrugge-beach-map.png" alt="zeebrugge beach map" />
-          <svg style={{ transform: `rotate(${currentMeetnetData?.windDirection+90}deg)` }} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.122 24l-4.122-4 8-8-8-8 4.122-4 11.878 12z" /></svg>
-        </div> */}
+        <div className="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">       
+          {/* <img className="object-center" src="/zeebrugge-beach-map.png" alt="zeebrugge beach map" /> */}
+          {currentMeetnetData?.windDirection ?
+            <WindArrow direction={currentMeetnetData.windDirection} /> : <Loading />}
+        </div>
       </dl>
     </div>
   </div>
