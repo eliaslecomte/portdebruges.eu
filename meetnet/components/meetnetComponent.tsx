@@ -5,6 +5,7 @@ import { currentMeetnetData } from '../api';
 import WindSpeed from '../../core/components/text/windSpeed';
 import Direction from '../../core/components/text/direction';
 import WindArrow from './windArrow';
+import Table from '../../core/components/table';
 
 type Props = { 
   currentMeetnetData?: currentMeetnetData,
@@ -40,48 +41,26 @@ return (
         Laatste update: <code>{currentMeetnetData?.measurementTaken?.toLocaleString()}</code>.
       </p>
     </div>
-    <div>
-      <dl>
-        <div className="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-          <dt className="text-sm leading-5 font-medium text-gray-500">
-            Temperatuur
-          </dt>
-          <dd className="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-            {/* TODO: Move this logic to a meetnet component! */}
-            {currentMeetnetData?.temperature ? <Temperature value={currentMeetnetData.temperature} /> : <Loading />}
-          </dd>
-        </div>
-        <div className={`bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 ${backgroundColourOnWindStrength(currentMeetnetData?.windSpeed.strength)}`}>
-          <dt className="text-sm leading-5 font-medium text-gray-500">
-            Wind snelheid
-          </dt>
-          <dd className="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-            {currentMeetnetData?.windSpeed.metersPerSecond && currentMeetnetData?.windSpeed.knots ? <WindSpeed metersPerSecond={currentMeetnetData.windSpeed.metersPerSecond} knots={currentMeetnetData.windSpeed.knots} /> : <Loading />}
-          </dd>
-        </div>
-        <div className={`bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 ${backgroundColourOnWindStrength(currentMeetnetData?.windGusts.strength)}`}>
-          <dt className="text-sm leading-5 font-medium text-gray-500">
-            Gusts
-          </dt>
-          <dd className="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-          {currentMeetnetData?.windGusts.metersPerSecond && currentMeetnetData?.windGusts.knots ? <WindSpeed metersPerSecond={currentMeetnetData.windGusts.metersPerSecond} knots={currentMeetnetData.windGusts.knots} /> : <Loading />}
-          </dd>
-        </div>
-        <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-          <dt className="text-sm leading-5 font-medium text-gray-500">
-            Windrichting
-          </dt>
-          <dd className="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-            {currentMeetnetData?.windDirection ? <Direction value={currentMeetnetData.windDirection} /> : <Loading />}
-          </dd>
-        </div>
-        <div className="bg-gray-100 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">       
-          {/* <img className="object-center" src="/zeebrugge-beach-map.png" alt="zeebrugge beach map" /> */}
-          {currentMeetnetData?.windDirection ?
-            <WindArrow direction={currentMeetnetData.windDirection} /> : <Loading />}
-        </div>
-      </dl>
-    </div>
+
+    <Table values={[
+      { title: 'Temperatuur', description: currentMeetnetData?.temperature ? <Temperature value={currentMeetnetData.temperature} /> : <Loading /> },
+      {
+        title: 'Wind snelheid',
+        description: currentMeetnetData?.windSpeed.metersPerSecond && currentMeetnetData?.windSpeed.knots ? <WindSpeed metersPerSecond={currentMeetnetData.windSpeed.metersPerSecond} knots={currentMeetnetData.windSpeed.knots} /> : <Loading />,
+        style: backgroundColourOnWindStrength(currentMeetnetData?.windSpeed.strength),
+      },
+      {
+        title: 'Gusts',
+        description: currentMeetnetData?.windGusts.metersPerSecond && currentMeetnetData?.windGusts.knots ? <WindSpeed metersPerSecond={currentMeetnetData.windGusts.metersPerSecond} knots={currentMeetnetData.windGusts.knots} /> : <Loading />,
+        style: backgroundColourOnWindStrength(currentMeetnetData?.windGusts.strength),
+      },
+      { title: 'Windrichting', description: currentMeetnetData?.windDirection ?
+        <>
+          <WindArrow direction={currentMeetnetData.windDirection} />
+          <Direction value={currentMeetnetData.windDirection} />
+        </>
+        : <Loading /> },
+    ]} />
   </div>
   )
-}
+};
