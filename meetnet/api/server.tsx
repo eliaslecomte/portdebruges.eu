@@ -1,3 +1,7 @@
+type accessTokenResponse = {
+  access_token: string;
+}
+
 export async function getAccessToken() {
   const formData = [];
   formData.push(`grant_type=${encodeURIComponent('password')}`);
@@ -15,6 +19,6 @@ export async function getAccessToken() {
       'Content-Type': 'application/x-www-form-urlencoded',
     }
   });
-  const data = await response.json();
+  const data: accessTokenResponse = await response.json();
   return data.access_token;
 }

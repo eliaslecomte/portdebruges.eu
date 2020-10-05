@@ -1,49 +1,17 @@
 import Head from 'next/head';
-import MeetnetComponent from '../meetnet/components/meetnetComponent';
-import Error from '../core/components/error';
-import useSWR from 'swr'
-import { parseCookies, setCookie } from 'nookies'
 
-import { getCurrentMeetnetData, refreshAccessToken } from '../meetnet/api';
+import { FC, useState } from 'react';
 
-import { FC, useEffect } from 'react';
 import Header from '../core/components/header';
 import Footer from '../core/components/footer';
-import { AuthenticationError } from '../meetnet/api/errors';
+import MeetnetComponent from '../meetnet/components/meetnetComponent';
+import Error from '../core/components/error';
 
 type Props = {
 }
 
 export const Home: FC<Props> = () => {
-  const meetnetAccessTokenFromCookie = parseCookies().meetnetAccessToken;
-
-  // TODO: store these keys with the api methods
-  // or move the useSWR to the api layer completely
-  const { data: meetnetAccessTokenResponse, error, mutate: refreshMeetnetAccessToken } = useSWR('meetnet/accessToken', refreshAccessToken, {
-    revalidateOnReconnect: false,
-    revalidateOnFocus: false,
-    initialData: meetnetAccessTokenFromCookie ? {
-      accessToken: meetnetAccessTokenFromCookie
-    } : undefined,
-  });
-  // https://swr.vercel.app/docs/conditional-fetching
-  const { data: currentMeetnetData, error: meetnetApiError } = useSWR(meetnetAccessTokenResponse ? [ 'meetnet/currentMeetnetData', meetnetAccessTokenResponse.accessToken ] : null, (url: string ,accessToken: string) => getCurrentMeetnetData(accessToken), { refreshInterval: 60 * 1000 });
-  
-  useEffect(() => {
-    if (meetnetApiError instanceof AuthenticationError) {
-      refreshMeetnetAccessToken();
-    }
-  }, [meetnetApiError]);
-
-  useEffect(() => {
-    if (meetnetAccessTokenResponse?.accessToken && meetnetAccessTokenResponse?.accessToken !== meetnetAccessTokenFromCookie) {
-      setCookie(null, 'meetnetAccessToken', meetnetAccessTokenResponse.accessToken, {
-        maxAge: 60 * 60, // meetnet access tokens expire after 1 hour
-        path: '/',
-      });
-    }
-    
-  }, [meetnetAccessTokenResponse]);
+  const [ error, setError ] = useState<string>();
 
   return (
     <>
@@ -55,11 +23,11 @@ export const Home: FC<Props> = () => {
       </Head>
 
       <div className="xl:container xl:mx-auto p-4">
-        {meetnetApiError && <Error title="Holy smokes!" description="Er ging iets  is met data opvragen van meetnet" />}
+        {error && <Error title="Holy smokes!" description={error} />}
         
         <Header  />
 
-        <MeetnetComponent currentMeetnetData={currentMeetnetData} />
+        <MeetnetComponent setError={setError} />
  
         <Footer />
       </div>
