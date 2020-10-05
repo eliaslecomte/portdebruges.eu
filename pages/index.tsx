@@ -6,11 +6,16 @@ import Header from '../core/components/header';
 import Footer from '../core/components/footer';
 import MeetnetComponent from '../meetnet/components/meetnetComponent';
 import Error from '../core/components/error';
+import { getCurrentWeather } from '../openWeather/api/serverSide';
+import type { currentWeatherResponse } from '../openWeather/api/serverSide';
+import type { GetStaticProps } from 'next';
+import OpenWeatherComponent from '../openWeather/components/openWeatherComponent';
 
 type Props = {
+  currentWeather: currentWeatherResponse;
 }
 
-export const Home: FC<Props> = () => {
+export const Home: FC<Props> = ( { currentWeather }) => {
   const [ error, setError ] = useState<string>();
 
   return (
@@ -28,6 +33,8 @@ export const Home: FC<Props> = () => {
         <Header  />
 
         <MeetnetComponent setError={setError} />
+
+        <OpenWeatherComponent currentWeather={currentWeather} />
  
         <Footer />
       </div>
@@ -35,15 +42,15 @@ export const Home: FC<Props> = () => {
   )
 }
 
-// export const getStaticProps: GetStaticProps = async () => {
-//   const accessToken = await getAccessToken();
+export const getStaticProps: GetStaticProps = async () => {
+  const currentWeather = await getCurrentWeather();
 
-//   return {
-//     props: {
-//       accessToken,
-//     },
-//     revalidate: 60 * 55, // access tokens are valid for an hour, so we cache for 55 minutes 😁
-//   }
-// }
+  return {
+    props: {
+      currentWeather,
+    },
+    revalidate: 60 * 60, // update weather news every hour
+  }
+}
 
 export default Home;

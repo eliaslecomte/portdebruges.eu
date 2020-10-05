@@ -1,6 +1,6 @@
-// Copied from https://tailwindui.com/preview 🦕
+import { FC } from "react";
 
-import { FC} from "react";
+// Copied from https://tailwindui.com/preview 🦕
 
 type Row = {
   title: string,
@@ -32,4 +32,4 @@ export const Table: FC<Props> = ({ values }) => {
   );
 }
   
-  export default Table;
+export default Table;

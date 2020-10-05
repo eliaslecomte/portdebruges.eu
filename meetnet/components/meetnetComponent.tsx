@@ -7,13 +7,14 @@ import { getCurrentMeetnetData, refreshAccessToken } from '../api';
 import { FC, useEffect } from 'react';
 import { AuthenticationError } from '../api/errors';
 
-import Temperature from '../../core/components/text/temperature';
-import Loading, { Size } from '../../core/components/text/loading';
+import Temperature from '../../core/components/info/temperature';
+import Loading, { Size } from '../../core/components/info/loading';
 import { WindIndication } from '../../core/enums';
-import WindSpeed from '../../core/components/text/windSpeed';
-import Direction from '../../core/components/text/direction';
-import WindArrow from './windArrow';
+import WindSpeed from '../../core/components/info/windSpeed';
+import Direction from '../../core/components/info/direction';
+import WindArrow from '../../core/components/drawables/windArrow';
 import Table from '../../core/components/table';
+import Block from '../../core/components/structure/block';
 
 type Props = { 
   setError: any,
@@ -34,7 +35,7 @@ const backgroundColourOnWindStrength = (strength?: WindIndication) => {
   }
 }
 
-export const MeetnetComponent:FC<Props> = ({ setError }) => {
+const MeetnetComponent:FC<Props> = ({ setError }) => {
   const meetnetAccessTokenFromCookie = parseCookies().meetnetAccessToken;
 
   // TODO: store these keys with the api methods
@@ -72,22 +73,17 @@ export const MeetnetComponent:FC<Props> = ({ setError }) => {
   }, [meetnetAccessTokenResponse]);
 
   return (
-    <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-      <div className="px-4 py-5 border-b border-gray-200 sm:px-6">
-        <h3 className="text-lg leading-6 font-medium text-gray-900">
-          Meetnet
-        </h3>
-        <p className="mt-1 max-w-2xl text-sm leading-5 text-gray-500 hidden md:block">
-          In het kader van Safekiting meet de Vlaamse Overheid op verschillende plaatsen de windsnelheid, richting en temperatuur.
-          In Zeebrugge staat de meet apparatuur op de havenmuur.
-        </p>
-        <span className="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
-          Laatste update: {currentMeetnetData?.measurementTaken ? <code>{currentMeetnetData.measurementTaken.toLocaleString()}</code> : <Loading size={Size.small} /> }.
-        </span>
-      </div>
-
-      <Table values={[
-        { title: 'Temperatuur', description: currentMeetnetData?.temperature ? <Temperature value={currentMeetnetData.temperature} /> : <Loading size={Size.small} /> },
+    <Block
+      title="Meetnet"
+      descriptionText="In het kader van Safekiting meet de Vlaamse Overheid op verschillende plaatsen de windsnelheid, richting en temperatuur.
+      In Zeebrugge staat de meet apparatuur op de havenmuur."
+      descriptionContent={[
+        <>
+          Laatste update: {currentMeetnetData?.measurementTaken ? <code>{currentMeetnetData.measurementTaken.toLocaleString()}</code> : <Loading size={Size.small} /> }
+        </>
+      ]}>
+        <Table values={[
+        { title: 'Temperatuur', description: currentMeetnetData?.temperature ? <Temperature current={currentMeetnetData.temperature} /> : <Loading size={Size.small} /> },
         {
           title: 'Wind snelheid',
           description: currentMeetnetData?.windSpeed.metersPerSecond && currentMeetnetData?.windSpeed.knots ? <WindSpeed metersPerSecond={currentMeetnetData.windSpeed.metersPerSecond} knots={currentMeetnetData.windSpeed.knots} /> : <Loading size={Size.regular} />,
@@ -104,8 +100,8 @@ export const MeetnetComponent:FC<Props> = ({ setError }) => {
             <Direction value={currentMeetnetData.windDirection} />
           </>
           : <Loading /> },
-      ]} />
-    </div>
+        ]} />
+      </Block>
   )
 };
 
