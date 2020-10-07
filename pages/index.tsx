@@ -5,7 +5,8 @@ import { FC, useState } from 'react';
 import Header from '../core/components/header';
 import Footer from '../core/components/footer';
 import MeetnetComponent from '../meetnet/components/meetnetComponent';
-import Error from '../core/components/error';
+import Error from '../core/components/alerts/error';
+import Warning from '../core/components/alerts/warning';
 import { getCurrentWeather } from '../openWeather/api/serverSide';
 import type { currentWeatherResponse } from '../openWeather/api/serverSide';
 import type { GetStaticProps } from 'next';
@@ -17,6 +18,7 @@ type Props = {
 
 export const Home: FC<Props> = ( { currentWeather }) => {
   const [ error, setError ] = useState<string>();
+  const [ warning, setWarning ] = useState<string>();
 
   return (
     <>
@@ -28,11 +30,14 @@ export const Home: FC<Props> = ( { currentWeather }) => {
       </Head>
 
       <div className="xl:container xl:mx-auto p-4">
-        {error && <Error title="Holy smokes!" description={error} />}
+        {error ? <Error description={error} /> : null}
+        {warning ? <Warning description={warning} /> : null}
         
         <Header  />
 
-        <MeetnetComponent setError={setError} />
+        <MeetnetComponent
+          setError={setError} 
+          setWarning={setWarning} />
 
         <OpenWeatherComponent currentWeather={currentWeather} />
  

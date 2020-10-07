@@ -16,10 +16,11 @@ const OpenWeatherComponent:FC<Props> = ({ currentWeather }) => {
   return (
     <Block
       title="Weerbericht"
-      descriptionContent={[
-        <>
-          Huidig weer info van <a href="https://openweathermap.org/city/2783307" target="_blank">OpenWeather</a>.
-        </>
+      descriptions={[
+        {
+          hideMobile: true,
+          content: <>Dagelijks weerbericht van <a href="https://openweathermap.org/city/2783307" target="_blank">OpenWeather</a>.</>
+        }
       ]}>
         <Table values={[
           { title: 'Temperatuur', description: <Temperature current={currentWeather.main.temp} feelsLike={currentWeather.main.feels_like} /> },

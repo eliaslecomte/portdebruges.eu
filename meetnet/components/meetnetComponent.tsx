@@ -17,7 +17,8 @@ import Table from '../../core/components/table';
 import Block from '../../core/components/structure/block';
 
 type Props = { 
-  setError: any,
+  setError: Function,
+  setWarning: Function,
 }
 
 const backgroundColourOnWindStrength = (strength?: WindIndication) => {
@@ -35,7 +36,7 @@ const backgroundColourOnWindStrength = (strength?: WindIndication) => {
   }
 }
 
-const MeetnetComponent:FC<Props> = ({ setError }) => {
+const MeetnetComponent:FC<Props> = ({ setError, setWarning }) => {
   const meetnetAccessTokenFromCookie = parseCookies().meetnetAccessToken;
 
   // TODO: store these keys with the api methods
@@ -52,13 +53,15 @@ const MeetnetComponent:FC<Props> = ({ setError }) => {
   
   useEffect(() => {
     if (meetnetApiError) {
-      setError("Er ging iets  is met data opvragen van meetnet", meetnetApiError);
-
       if (meetnetApiError instanceof AuthenticationError) {
+        setWarning("Tijd om het water op te gaan 🪁! Bezig met meetnet data op te halen..");
         refreshMeetnetAccessToken();
+      } else {
+        setError("We ging iets mis tijdens het ophalen van de meetnet data 🤕.");
       }
     } else {
       setError();
+      setWarning();
     }
   }, [meetnetApiError]);
 
@@ -75,24 +78,27 @@ const MeetnetComponent:FC<Props> = ({ setError }) => {
   return (
     <Block
       title="Meetnet"
-      descriptionText="In het kader van Safekiting meet de Vlaamse Overheid op verschillende plaatsen de windsnelheid, richting en temperatuur.
-      In Zeebrugge staat de meet apparatuur op de havenmuur."
-      descriptionContent={[
-        <>
-          Laatste update: {currentMeetnetData?.measurementTaken ? <code>{currentMeetnetData.measurementTaken.toLocaleString()}</code> : <Loading size={Size.small} /> }
-        </>
+      descriptions={[
+        {
+          hideMobile: true,
+          content: <>In het kader van Safekiting meet de Vlaamse Overheid op verschillende plaatsen de windsnelheid, richting en temperatuur.
+          In Zeebrugge staat de meet apparatuur op de havenmuur.</>
+        },
+        {
+          content: <>Laatste update: {currentMeetnetData?.measurementTaken ? <code>{currentMeetnetData.measurementTaken.toLocaleString()}</code> : <Loading size={Size.small} /> }</>
+        }
       ]}>
         <Table values={[
         { title: 'Temperatuur', description: currentMeetnetData?.temperature ? <Temperature current={currentMeetnetData.temperature} /> : <Loading size={Size.small} /> },
         {
           title: 'Wind snelheid',
           description: currentMeetnetData?.windSpeed.metersPerSecond && currentMeetnetData?.windSpeed.knots ? <WindSpeed metersPerSecond={currentMeetnetData.windSpeed.metersPerSecond} knots={currentMeetnetData.windSpeed.knots} /> : <Loading size={Size.regular} />,
-          style: backgroundColourOnWindStrength(currentMeetnetData?.windSpeed.strength),
+          // style: backgroundColourOnWindStrength(currentMeetnetData?.windSpeed.strength),
         },
         {
           title: 'Gusts',
           description: currentMeetnetData?.windGusts.metersPerSecond && currentMeetnetData?.windGusts.knots ? <WindSpeed metersPerSecond={currentMeetnetData.windGusts.metersPerSecond} knots={currentMeetnetData.windGusts.knots} /> : <Loading size ={Size.regular} />,
-          style: backgroundColourOnWindStrength(currentMeetnetData?.windGusts.strength),
+          // style: backgroundColourOnWindStrength(currentMeetnetData?.windGusts.strength),
         },
         { title: 'Windrichting', description: currentMeetnetData?.windDirection ?
           <>
