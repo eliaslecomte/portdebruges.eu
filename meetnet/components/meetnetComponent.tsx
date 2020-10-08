@@ -4,7 +4,7 @@ import { parseCookies, setCookie } from 'nookies';
 
 import { getCurrentMeetnetData, refreshAccessToken } from '../api';
 
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { AuthenticationError } from '../api/errors';
 
 import Temperature from '../../core/components/info/temperature';
@@ -15,25 +15,11 @@ import Direction from '../../core/components/info/direction';
 import WindArrow from '../../core/components/drawables/windArrow';
 import Table from '../../core/components/table';
 import Block from '../../core/components/structure/block';
+import Datetime from '../../core/components/info/datetime';
 
 type Props = { 
   setError: Function,
   setWarning: Function,
-}
-
-const backgroundColourOnWindStrength = (strength?: WindIndication) => {
-  switch(strength) {
-    case WindIndication.light:
-      return 'bg-green-200';
-    case WindIndication.good:
-      return 'bg-green-300';
-    case WindIndication.strong:
-      return 'bg-green-red-200'
-    case WindIndication.danger:
-      return 'bg-green-red-300'
-    default:
-      return '';
-  }
 }
 
 const MeetnetComponent:FC<Props> = ({ setError, setWarning }) => {
@@ -54,7 +40,7 @@ const MeetnetComponent:FC<Props> = ({ setError, setWarning }) => {
   useEffect(() => {
     if (meetnetApiError) {
       if (meetnetApiError instanceof AuthenticationError) {
-        setWarning("Tijd om het water op te gaan 🪁! Bezig met meetnet data op te halen..");
+        setWarning("Nog steeds hier? Even alles updaten, even geduld. Veel plezier op het water🪁!");
         refreshMeetnetAccessToken();
       } else {
         setError("We ging iets mis tijdens het ophalen van de meetnet data 🤕.");
@@ -75,6 +61,25 @@ const MeetnetComponent:FC<Props> = ({ setError, setWarning }) => {
     
   }, [meetnetAccessTokenResponse]);
 
+  const [ isUpdated, setUpdated ] = useState(false);
+
+  useEffect(() => {
+    if(currentMeetnetData?.measurementTaken) {
+      if (currentMeetnetData.measurementTaken > new Date(Date.now() - 60 * 1000)) {
+        setUpdated(true);
+      }
+    }
+  }, [currentMeetnetData]);
+
+  useEffect(() => {
+    if (isUpdated) {
+      const timeout = setTimeout(() => setUpdated(false), 10 * 1000);
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
+  }, [isUpdated]);
+
   return (
     <Block
       title="Meetnet"
@@ -84,28 +89,41 @@ const MeetnetComponent:FC<Props> = ({ setError, setWarning }) => {
           content: <>In het kader van Safekiting meet de Vlaamse Overheid op verschillende plaatsen de windsnelheid, richting en temperatuur.
           In Zeebrugge staat de meet apparatuur op de havenmuur.</>
         },
-        {
-          content: <>Laatste update: {currentMeetnetData?.measurementTaken ? <code>{currentMeetnetData.measurementTaken.toLocaleString()}</code> : <Loading size={Size.small} /> }</>
-        }
       ]}>
         <Table values={[
-        { title: 'Temperatuur', description: currentMeetnetData?.temperature ? <Temperature current={currentMeetnetData.temperature} /> : <Loading size={Size.small} /> },
-        {
-          title: 'Wind snelheid',
-          description: currentMeetnetData?.windSpeed.metersPerSecond && currentMeetnetData?.windSpeed.knots ? <WindSpeed metersPerSecond={currentMeetnetData.windSpeed.metersPerSecond} knots={currentMeetnetData.windSpeed.knots} /> : <Loading size={Size.regular} />,
-          // style: backgroundColourOnWindStrength(currentMeetnetData?.windSpeed.strength),
-        },
-        {
-          title: 'Gusts',
-          description: currentMeetnetData?.windGusts.metersPerSecond && currentMeetnetData?.windGusts.knots ? <WindSpeed metersPerSecond={currentMeetnetData.windGusts.metersPerSecond} knots={currentMeetnetData.windGusts.knots} /> : <Loading size ={Size.regular} />,
-          // style: backgroundColourOnWindStrength(currentMeetnetData?.windGusts.strength),
-        },
-        { title: 'Windrichting', description: currentMeetnetData?.windDirection ?
-          <>
-            <WindArrow direction={currentMeetnetData.windDirection} />
-            <Direction value={currentMeetnetData.windDirection} />
-          </>
-          : <Loading /> },
+          {
+            title: 'Temperatuur', description: currentMeetnetData?.temperature ? <Temperature current={currentMeetnetData.temperature} /> : <Loading size={Size.small} />,
+            showUpdated: isUpdated,
+          },
+          {
+            title: 'Wind snelheid',
+            description: currentMeetnetData?.windSpeed.metersPerSecond && currentMeetnetData?.windSpeed.knots ? <WindSpeed metersPerSecond={currentMeetnetData.windSpeed.metersPerSecond} knots={currentMeetnetData.windSpeed.knots} /> : <Loading size={Size.regular} />,
+            showUpdated: isUpdated,
+          },
+          {
+            title: 'Gusts',
+            description: currentMeetnetData?.windGusts.metersPerSecond && currentMeetnetData?.windGusts.knots ? <WindSpeed metersPerSecond={currentMeetnetData.windGusts.metersPerSecond} knots={currentMeetnetData.windGusts.knots} /> : <Loading size ={Size.regular} />,
+            showUpdated: isUpdated,
+          },
+          {
+            title: 'Windrichting',
+            description: currentMeetnetData?.windDirection ?
+              <>
+                <WindArrow direction={currentMeetnetData.windDirection} />
+                <Direction value={currentMeetnetData.windDirection} />
+              </>
+              : <Loading />,
+            showUpdated: isUpdated,
+          },
+          {
+            title: 'Laatste update',
+            description: currentMeetnetData?.measurementTaken ?
+              <span className="">
+                <Datetime date={currentMeetnetData.measurementTaken} />
+              </span>
+              : <Loading size={Size.small} />,
+            showUpdated: isUpdated,
+          }
         ]} />
       </Block>
   )

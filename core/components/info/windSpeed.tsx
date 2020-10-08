@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useEffect, useState } from "react"
 
 type Props = {
   metersPerSecond: number;
@@ -20,9 +20,15 @@ const styleForWindSpeed = (metersPerSecond: number) => {
 }
 
 const WindSpeed: FC<Props> = ({ metersPerSecond, knots }) => {
+  const [ windIntensity, setWindIntensity ] = useState<string>("");
+
+  useEffect(() => {
+    setWindIntensity(styleForWindSpeed(metersPerSecond));
+  }, [ metersPerSecond]);
+
   return (
-    <div className={`border-l-8 border-${styleForWindSpeed(metersPerSecond)} border-opacity-75 pl-2`}>
-      <p className={styleForWindSpeed(metersPerSecond)}>{metersPerSecond}m/s of {knots}kt</p>
+    <div className={`border-l-8 border-${windIntensity} border-opacity-75 pl-2`}>
+      <p>{metersPerSecond}m/s of {knots}kt</p>
     </div>
     
   );

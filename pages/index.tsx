@@ -35,12 +35,20 @@ export const Home: FC<Props> = ( { currentWeather }) => {
         
         <Header  />
 
-        <MeetnetComponent
-          setError={setError} 
-          setWarning={setWarning} />
+        {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"> */}
+        <div className="grid grid-cols-1 sm:grid-cols-2">
 
-        <OpenWeatherComponent currentWeather={currentWeather} />
- 
+          <MeetnetComponent
+            setError={setError} 
+            setWarning={setWarning} />
+
+          <OpenWeatherComponent currentWeather={currentWeather} />
+  
+          {/* <WindfinderComponent /> */}
+
+        </div>
+
+        
         <Footer />
       </div>
     </>
