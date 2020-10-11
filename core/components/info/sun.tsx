@@ -1,5 +1,6 @@
 import { FC } from "react"
 
+// TODO: use formatter
 const formatTime = (unixTimestamp: number) => {
   // TODO: should not be unix
   const datetime = new Date(unixTimestamp * 1000);

@@ -1,4 +1,4 @@
-h2. Meetnetvlaamsebanken.be
+# Meetnetvlaamsebanken.be
 
 Live data from government infrastructure.
 

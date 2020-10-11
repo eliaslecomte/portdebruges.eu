@@ -7,16 +7,12 @@ import Footer from '../core/components/footer';
 import MeetnetComponent from '../meetnet/components/meetnetComponent';
 import Error from '../core/components/alerts/error';
 import Warning from '../core/components/alerts/warning';
-import { getCurrentWeather } from '../openWeather/api/serverSide';
-import type { currentWeatherResponse } from '../openWeather/api/serverSide';
-import type { GetStaticProps } from 'next';
-import OpenWeatherComponent from '../openWeather/components/openWeatherComponent';
+import { getCurrentWeather, getThreeHourlyWeather } from '../openWeather/api/serverSide';
+import type { InferGetStaticPropsType } from 'next';
+import OpenWeatherComponent from '../openWeather/components/currentWeatherComponent';
+import ThreeHourlyWeatherComponent from '../openWeather/components/threeHourlyWeatherComponent';
 
-type Props = {
-  currentWeather: currentWeatherResponse;
-}
-
-export const Home: FC<Props> = ( { currentWeather }) => {
+export const Home: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ currentWeather, threeHourlyWeather }) => {
   const [ error, setError ] = useState<string>();
   const [ warning, setWarning ] = useState<string>();
 
@@ -35,14 +31,15 @@ export const Home: FC<Props> = ( { currentWeather }) => {
         
         <Header  />
 
-        {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"> */}
-        <div className="grid grid-cols-1 sm:grid-cols-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" >
 
           <MeetnetComponent
             setError={setError} 
             setWarning={setWarning} />
 
           <OpenWeatherComponent currentWeather={currentWeather} />
+
+          <ThreeHourlyWeatherComponent threeHourlyWeather={threeHourlyWeather} />
   
           {/* <WindfinderComponent /> */}
 
@@ -55,12 +52,17 @@ export const Home: FC<Props> = ( { currentWeather }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const currentWeather = await getCurrentWeather();
+export const getStaticProps = async () => {
+
+  const [ currentWeather, threeHourlyWeather ]= await Promise.all([
+    getCurrentWeather(),
+    getThreeHourlyWeather(),
+  ]);
 
   return {
     props: {
       currentWeather,
+      threeHourlyWeather,
     },
     revalidate: 60 * 60, // update weather news every hour
   }

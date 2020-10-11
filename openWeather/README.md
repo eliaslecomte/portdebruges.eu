@@ -1,12 +1,12 @@
-OpenWeather
+# OpenWeather
 
-Current weather forecast
+## Current weather forecast
 https://openweathermap.org/current
 
-Hourly forecast
+## Hourly forecast
 https://openweathermap.org/api/hourly-forecast
 
-Links
+## Links
 
 * https://home.openweathermap.org/
 * https://rapidapi.com/community/api/open-weather-map?endpoint=53aa6041e4b00287471a2b62

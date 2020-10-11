@@ -1,11 +1,13 @@
-Website repository for http://portdebruges.eu
+Website repository for https://portdebruges.eu
 
-h1. Purpose
+# Purpose
 
-Website helping kitesurfers going to Zeebrugge.
+Combining multiple weather/wind forecasts and measurements to make kitesurfing safer in Zeebrugge.
 
-h1. Data
+# Data
 
 In first phase we'll just fetch all data at runtime from different sources.
 
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
+* Meetnet
+* OpenWeatherMap
+* Windfinder

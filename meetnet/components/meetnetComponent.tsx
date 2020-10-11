@@ -9,11 +9,10 @@ import { AuthenticationError } from '../api/errors';
 
 import Temperature from '../../core/components/info/temperature';
 import Loading, { Size } from '../../core/components/info/loading';
-import { WindIndication } from '../../core/enums';
 import WindSpeed from '../../core/components/info/windSpeed';
 import Direction from '../../core/components/info/direction';
 import WindArrow from '../../core/components/drawables/windArrow';
-import Table from '../../core/components/table';
+import Table from '../../core/components/content-structures/table';
 import Block from '../../core/components/structure/block';
 import Datetime from '../../core/components/info/datetime';
 

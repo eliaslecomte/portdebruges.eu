@@ -3,7 +3,7 @@ import WindArrow from "../drawables/windArrow";
 
 type Props = {
   speed: number;
-  gusts: number;
+  gusts: number | null;
   direction: number;
 }
 
@@ -11,7 +11,7 @@ const Wind: FC<Props> = ({ speed, gusts, direction }) => {
   return (
     <>
       <WindArrow direction={direction} />
-      <p>Wind: {speed}m/s, gusts: {gusts}m/s</p>
+      <p>Wind: {speed}m/s{gusts ? `, gusts: ${gusts}m/s` : null}</p>
     </>
   );
 }
