@@ -81,7 +81,7 @@ const MeetnetComponent:FC<Props> = ({ setError, setWarning }) => {
 
   return (
     <Block
-      title="Meetnet"
+      title="Huidige wind"
       descriptions={[
         {
           hideMobile: true,

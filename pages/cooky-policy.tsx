@@ -1,7 +1,9 @@
 import Head from "next/head";
 import { FC } from "react";
+import Table from "../core/components/content-structures/table";
 import Footer from "../core/components/footer";
 import Header from "../core/components/header";
+import Block from "../core/components/structure/block";
 
 const CookyPolicyPage: FC = () => {
   return (
@@ -17,34 +19,35 @@ const CookyPolicyPage: FC = () => {
 
         <Header  />
 
-        <div className="m-4">
+        <p className="p-8">We gebruiken geen cookies om je te tracken, enkel technische cookies 🍪.</p>
 
-          <p className="pt-8 pb-8">We gebruiken geen cookies om je te tracken, enkel technische cookies.</p>
-          
-          <table className="table-auto">
-            <thead>
-              <tr>
-                <th className="px-4 py-2">Naam</th>
-                <th className="px-4 py-2">Doel</th>
-                <th className="px-4 py-2">Website</th>
-                <th className="px-4 py-2">Geldigheid</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="border px-4 py-2">ARRAfinity</td>
-                <td className="border px-4 py-2">Sessie cookie voor meetnet data</td>
-                <td className="border px-4 py-2">.meetnetvlaamsebanken.be</td>
-                <td className="border px-4 py-2">session</td>
-              </tr>
-              <tr className="bg-gray-100">
-                <td className="border px-4 py-2">meetnetAccessToken</td>
-                <td className="border px-4 py-2">Authenticatie token voor meetnet data</td>
-                <td className="border px-4 py-2">portdebruges.eu</td>
-                <td className="border px-4 py-2">1 uurtje</td>
-              </tr>
-            </tbody>
-          </table>
+        <div className="grid grid-cols-1 sm:grid-cols-2">
+
+          <Block
+            title="meetnetAccessToken"
+            descriptions={[
+              {
+                content: <>Authenticatie token voor meetnet data.</>
+              }
+            ]}>
+              <Table values={[
+                { title: 'Domein', description: <p>portdebruges.eu</p> },
+                { title: 'Duur', description: <p>1 uurtje</p> },
+              ]} />
+            </Block>
+
+          <Block
+            title="ARRAfinity"
+            descriptions={[
+              {
+                content: <>Sessie cookie voor meetnet data.</>
+              }
+            ]}>
+              <Table values={[
+                { title: 'Domein', description: <p>.meetnetvlaamsebanken.be</p> },
+                { title: 'Duur', description: <p>Sessie</p> },
+              ]} />
+            </Block>
 
         </div>
 
