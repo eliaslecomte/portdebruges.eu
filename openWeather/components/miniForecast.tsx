@@ -1,8 +1,8 @@
 import { FC, useEffect, useState } from "react"
-import WindArrow from "../../core/components/drawables/windArrow";
-import Image from "../../core/components/drawables/image";
+import WindArrow from "../../core/components/images/windArrow";
+import Image from "../../core/components/images";
 import Time from "../../core/components/info/time";
-import Grid from "../../core/components/content-structures/grid";
+import Grid from "../../core/components/structure/grid";
 
 // TODO: can we use array-item of ThreeHourlyWeather data type here?
 // Uses box alignment (https://tailwindcss.com/docs/justify-content)

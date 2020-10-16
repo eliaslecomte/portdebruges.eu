@@ -1,9 +1,11 @@
-import Head from "next/head";
 import { FC } from "react";
-import Table from "../core/components/content-structures/table";
+import Head from "next/head";
+
+import Table from "../core/components/structure/table";
 import Footer from "../core/components/footer";
 import Header from "../core/components/header";
 import Block from "../core/components/structure/block";
+import Page from "../core/components/structure/page";
 
 const CookyPolicyPage: FC = () => {
   return (
@@ -15,21 +17,15 @@ const CookyPolicyPage: FC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="xl:container xl:mx-auto p-4">
-
-        <Header  />
-
-        <p className="p-8">We gebruiken geen cookies om je te tracken, enkel technische cookies 🍪.</p>
+      <Page
+        description="We gebruiken geen cookies om je te tracken, enkel technische cookies 🍪.">
 
         <div className="grid grid-cols-1 sm:grid-cols-2">
 
           <Block
             title="meetnetAccessToken"
-            descriptions={[
-              {
-                content: <>Authenticatie token voor meetnet data.</>
-              }
-            ]}>
+            description="Authenticatie token voor meetnet data."
+            showDescriptionMobile>
               <Table values={[
                 { title: 'Domein', description: <p>portdebruges.eu</p> },
                 { title: 'Duur', description: <p>1 uurtje</p> },
@@ -38,11 +34,8 @@ const CookyPolicyPage: FC = () => {
 
           <Block
             title="ARRAfinity"
-            descriptions={[
-              {
-                content: <>Sessie cookie voor meetnet data.</>
-              }
-            ]}>
+            description="Sessie cookie voor meetnet data."
+            showDescriptionMobile>
               <Table values={[
                 { title: 'Domein', description: <p>.meetnetvlaamsebanken.be</p> },
                 { title: 'Duur', description: <p>Sessie</p> },
@@ -51,8 +44,7 @@ const CookyPolicyPage: FC = () => {
 
         </div>
 
-        <Footer />
-      </div>
+      </Page>
     </>
   );
 }

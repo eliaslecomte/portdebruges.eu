@@ -2,7 +2,6 @@ import Head from 'next/head';
 
 import { FC, useState } from 'react';
 
-import Header from '../core/components/header';
 import Footer from '../core/components/footer';
 import MeetnetComponent from '../meetnet/components/meetnetComponent';
 import Error from '../core/components/alerts/error';
@@ -11,6 +10,7 @@ import { getCurrentWeather, getThreeHourlyWeather } from '../openWeather/api/ser
 import type { InferGetStaticPropsType } from 'next';
 import OpenWeatherComponent from '../openWeather/components/currentWeatherComponent';
 import ThreeHourlyWeatherComponent from '../openWeather/components/threeHourlyWeatherComponent';
+import Page from '../core/components/structure/page';
 
 export const Home: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ currentWeather, threeHourlyWeather }) => {
   const [ error, setError ] = useState<string>();
@@ -25,11 +25,14 @@ export const Home: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ curre
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="xl:container xl:mx-auto p-4">
-        {error ? <Error description={error} /> : null}
-        {warning ? <Warning description={warning} /> : null}
-        
-        <Header  />
+      <Page
+        topComponent={
+          <>
+            {error ? <Error description={error} /> : null}
+            {warning ? <Warning description={warning} /> : null}  
+          </>
+        }>
+
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" >
 
@@ -45,9 +48,7 @@ export const Home: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ curre
 
         </div>
 
-        
-        <Footer />
-      </div>
+      </Page>
     </>
   )
 }

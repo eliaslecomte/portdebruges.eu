@@ -1,5 +1,5 @@
 import { FC } from "react"
-import WindArrow from "../drawables/windArrow";
+import WindArrow from "../images/windArrow";
 
 type Props = {
   speed: number;

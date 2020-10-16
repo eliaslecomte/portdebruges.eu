@@ -11,8 +11,8 @@ import Temperature from '../../core/components/info/temperature';
 import Loading, { Size } from '../../core/components/info/loading';
 import WindSpeed from '../../core/components/info/windSpeed';
 import Direction from '../../core/components/info/direction';
-import WindArrow from '../../core/components/drawables/windArrow';
-import Table from '../../core/components/content-structures/table';
+import WindArrow from '../../core/components/images/windArrow';
+import Table from '../../core/components/structure/table';
 import Block from '../../core/components/structure/block';
 import Datetime from '../../core/components/info/datetime';
 
@@ -82,13 +82,8 @@ const MeetnetComponent:FC<Props> = ({ setError, setWarning }) => {
   return (
     <Block
       title="Huidige wind"
-      descriptions={[
-        {
-          hideMobile: true,
-          content: <>In het kader van Safekiting meet de Vlaamse Overheid op verschillende plaatsen de windsnelheid, richting en temperatuur.
-          In Zeebrugge staat de meet apparatuur op de havenmuur.</>
-        },
-      ]}>
+      description="In het kader van Safekiting meet de Vlaamse Overheid op verschillende plaatsen de windsnelheid, richting en temperatuur.
+          In Zeebrugge staat de meet apparatuur op de havenmuur.">
         <Table values={[
           {
             title: 'Temperatuur', description: currentMeetnetData?.temperature ? <Temperature current={currentMeetnetData.temperature} /> : <Loading size={Size.small} />,
