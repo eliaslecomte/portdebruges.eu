@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react"
 import WindArrow from "../../core/components/images/windArrow";
 import Image from "../../core/components/images";
-import Time from "../../core/components/info/time";
+import Time from "./time";
 import Grid from "../../core/components/structure/grid";
 
 // TODO: can we use array-item of ThreeHourlyWeather data type here?
@@ -9,17 +9,14 @@ import Grid from "../../core/components/structure/grid";
 
 type Props = {
   style?: string,
-  predictionDate: number;
+  predictionDate: string;
   temperature: number;
   windSpeed: number;
-  windDirection: number;
-  weather: Array<{
-    image: string,
-    description: string,
-  }>,
+  windGusts: number,
+  windDirection: number,
 };
 
-const MiniForecast: FC<Props> = ({ style, predictionDate, temperature, windSpeed, windDirection, weather }) => {
+const Forecast: FC<Props> = ({ style, predictionDate, temperature, windSpeed, windGusts, windDirection }) => {
   const [ roundedTemperature, setRoundedTemperature ] = useState<number>();
 
   useEffect(() => {
@@ -30,14 +27,14 @@ const MiniForecast: FC<Props> = ({ style, predictionDate, temperature, windSpeed
     <Grid
       style={style}
       items={[
-        <Time dateTimeMillis={predictionDate} />,
+        <Time dateTimeString={predictionDate} />,
         <WindArrow direction={windDirection} />,
         <p>{roundedTemperature}°</p>,
         <p>{windSpeed} m/s</p>,
-        <>{weather.map((item, index) => <Image key={index} source={item.image} alternative={item.description} width="40px" height="40px" />)}</>,
+        <p>{windGusts} m/s</p>,
       ]}
       itemsPerRow={5} />
   );
 }
 
-export default MiniForecast;
+export default Forecast;

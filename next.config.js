@@ -5,6 +5,7 @@ module.exports = {
     // add to .env.local to build locally
     // MEETNET_USERNAME: 'username',
     // MEETNET_PASSWORD: 'password',
-    // OPENWEATHER_API_KEY: 'api key
+    // OPENWEATHER_API_KEY: 'api key,
+    // WINDFINDER_API_KEY: api key
   },
 }

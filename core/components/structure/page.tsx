@@ -8,6 +8,7 @@ type Props = {
 }
 
 const Page: FC<Props> = ({ topComponent, description, children }) => {
+  // FIXME store page padding as mixin?
   return (
     <div className="xl:container xl:mx-auto p-4">
       {topComponent}

@@ -2,7 +2,6 @@ import Head from 'next/head';
 
 import { FC, useState } from 'react';
 
-import Footer from '../core/components/footer';
 import MeetnetComponent from '../meetnet/components/meetnetComponent';
 import Error from '../core/components/alerts/error';
 import Warning from '../core/components/alerts/warning';
@@ -11,8 +10,10 @@ import type { InferGetStaticPropsType } from 'next';
 import OpenWeatherComponent from '../openWeather/components/currentWeatherComponent';
 import ThreeHourlyWeatherComponent from '../openWeather/components/threeHourlyWeatherComponent';
 import Page from '../core/components/structure/page';
+import { getSuperforecasts } from '../windfinder/api/serverSide';
+import WindFinderComponent from '../windfinder/components/windFinderComponent';
 
-export const Home: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ currentWeather, threeHourlyWeather }) => {
+export const Home: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ currentWeather, threeHourlyWeather, superforecast }) => {
   const [ error, setError ] = useState<string>();
   const [ warning, setWarning ] = useState<string>();
 
@@ -40,11 +41,12 @@ export const Home: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ curre
             setError={setError} 
             setWarning={setWarning} />
 
+          <WindFinderComponent
+            superforecast={superforecast} />
+
           <OpenWeatherComponent currentWeather={currentWeather} />
 
           <ThreeHourlyWeatherComponent threeHourlyWeather={threeHourlyWeather} />
-  
-          {/* <WindfinderComponent /> */}
 
         </div>
 
@@ -55,15 +57,17 @@ export const Home: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ curre
 
 export const getStaticProps = async () => {
 
-  const [ currentWeather, threeHourlyWeather ]= await Promise.all([
+  const [ currentWeather, threeHourlyWeather, superforecast ]= await Promise.all([
     getCurrentWeather(),
     getThreeHourlyWeather(),
+    getSuperforecasts(),
   ]);
 
   return {
     props: {
       currentWeather,
       threeHourlyWeather,
+      superforecast,
     },
     revalidate: 60 * 60, // update weather news every hour
   }

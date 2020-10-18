@@ -1,8 +1,9 @@
 import { FC } from 'react';
 
 import Block from '../../core/components/structure/block';
+import mixins from '../../core/mixins';
 import type { ThreeHourlyWeather } from '../api/serverSide';
-import MiniForecast from './miniForecast';
+import Forecast from './forecast';
 
 type Props = {
   threeHourlyWeather: ThreeHourlyWeather,
@@ -14,9 +15,9 @@ const ThreeHourlyWeatherComponent:FC<Props> = ({ threeHourlyWeather }) => {
       title="Voorspelling per 3 uur"
       description={<>Voorspelling per 3 uur van <a href="https://openweathermap.org/city/2783307" target="_blank">OpenWeather</a>.</>}>
         {threeHourlyWeather.map((weather, index) => (
-          <MiniForecast
-            key={`miniforecast-${index}`}
-            style={index%2 === 0 ? 'bg-gray-100' : 'bg-white'}
+          <Forecast
+            key={`three-hourly-weather-forecast-${index}`}
+            style={mixins.rowColours(index)}
             predictionDate={weather.predictionDate}
             temperature={weather.temperature}
             windSpeed={weather.windSpeed}

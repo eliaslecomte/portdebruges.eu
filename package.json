@@ -1,5 +1,5 @@
 {
-  "name": "learn-starter",
+  "name": "portdebruges.eu",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,7 +10,7 @@
     "export": "next export"
   },
   "dependencies": {
-    "next": "9.5.3",
+    "next": "^9.5.5",
     "nookies": "^2.4.0",
     "postcss-preset-env": "^6.7.0",
     "react": "16.13.1",

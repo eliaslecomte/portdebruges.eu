@@ -2,12 +2,13 @@ import { FC } from "react"
 import { formatTime } from "../../formatters";
 
 type Props = {
-  dateTimeMillis: number;
+  dateTime: Date;
 }
 
-const Time: FC<Props> = ({ dateTimeMillis }) => {
+// TODO: given it's tied to openWeather, should be stored there?
+const Time: FC<Props> = ({ dateTime }) => {
   return (
-    <p>{formatTime(dateTimeMillis)}</p>
+    <p>{formatTime(dateTime)}</p>
   );
 }
 
