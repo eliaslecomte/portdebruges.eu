@@ -15,6 +15,7 @@ import WindArrow from '../../core/components/images/windArrow';
 import Table from '../../core/components/structure/table';
 import Block from '../../core/components/structure/block';
 import Datetime from '../../core/components/info/datetime';
+import WindDirection from '../../core/components/info/windDirection';
 
 type Props = { 
   setError: Function,
@@ -101,12 +102,7 @@ const MeetnetComponent:FC<Props> = ({ setError, setWarning }) => {
           },
           {
             title: 'Windrichting',
-            description: currentMeetnetData?.windDirection ?
-              <>
-                <WindArrow direction={currentMeetnetData.windDirection} />
-                <Direction value={currentMeetnetData.windDirection} />
-              </>
-              : <Loading />,
+            description: currentMeetnetData?.windDirection ? <WindDirection direction={currentMeetnetData.windDirection} /> : <Loading size={Size.small} />,
             showUpdated: isUpdated,
           },
           {
@@ -115,7 +111,7 @@ const MeetnetComponent:FC<Props> = ({ setError, setWarning }) => {
               <span className="">
                 <Datetime date={currentMeetnetData.measurementTaken} />
               </span>
-              : <Loading size={Size.small} />,
+              : <Loading />,
             showUpdated: isUpdated,
           }
         ]} />

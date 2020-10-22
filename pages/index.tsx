@@ -11,7 +11,7 @@ import OpenWeatherComponent from '../openWeather/components/currentWeatherCompon
 import ThreeHourlyWeatherComponent from '../openWeather/components/threeHourlyWeatherComponent';
 import Page from '../core/components/structure/page';
 import { getSuperforecasts } from '../windfinder/api/serverSide';
-import WindFinderComponent from '../windfinder/components/windFinderComponent';
+import WindfinderComponent from '../windfinder/components/windfinderComponent';
 
 export const Home: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ currentWeather, threeHourlyWeather, superforecast }) => {
   const [ error, setError ] = useState<string>();
@@ -43,7 +43,7 @@ export const Home: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({ curre
             setError={setError} 
             setWarning={setWarning} />
 
-          <WindFinderComponent
+          <WindfinderComponent
             superforecast={superforecast} />
 
           <OpenWeatherComponent currentWeather={currentWeather} />

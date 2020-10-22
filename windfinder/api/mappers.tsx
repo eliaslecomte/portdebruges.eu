@@ -3,7 +3,6 @@ import { superforecastsResponse } from "./serverSide";
 const showItems = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
 
 export function formatSuperforecast(data: superforecastsResponse) {
-  // console.log(data);
   return data
     .filter((item, index) => showItems.includes(index))
     .map(forecast => ({

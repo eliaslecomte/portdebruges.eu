@@ -25,7 +25,7 @@ export const Table: FC<Props> = ({ values }) => {
             <dt className="text-sm leading-5 font-medium text-gray-500">
               {item.title}
             </dt>
-            <dd className={`text-sm leading-5 text-gray-900 mt-0 sm:col-span-2 ${item.showUpdated ? 'animate-pulse' : ''}`}>
+            <dd className={`text-sm leading-5 text-gray-900 mt-0 col-span-2 ${item.showUpdated ? 'animate-pulse' : ''}`}>
               {item.description}
             </dd>
           </div>

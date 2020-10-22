@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from "react"
+import mixins from "../../mixins";
 
 type Props = {
   metersPerSecond: number;
@@ -7,13 +8,13 @@ type Props = {
 
 const styleForWindSpeed = (metersPerSecond: number) => {
   if (metersPerSecond > 20) {
-    return "red-300";
+    return mixins.funColours.tricky;
   } else if (metersPerSecond > 15) {
-    return "green-600";
+    return mixins.funColours.awesome;
   } else if (metersPerSecond > 10) {
-    return "green-400";
+    return mixins.funColours.safe;
   } else if (metersPerSecond > 6) {
-    return "green-200";
+    return mixins.funColours.boring;
   }
   
   return "";
