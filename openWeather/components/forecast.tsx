@@ -1,6 +1,7 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect, useState } from "react";
+import Image from "next/image";
+
 import WindArrow from "../../core/components/images/windArrow";
-import Image from "../../core/components/images";
 import Time from "./time";
 import Grid from "../../core/components/structure/grid";
 
@@ -34,7 +35,7 @@ const Forecast: FC<Props> = ({ style, predictionDate, temperature, windSpeed, wi
         <WindArrow direction={windDirection} />,
         <p>{roundedTemperature}°</p>,
         <p>{windSpeed} m/s</p>,
-        <>{weather.map((item, index) => <Image key={index} source={item.image} alternative={item.description} width="40px" height="40px" />)}</>,
+        <>{weather.map((item, index) => <Image key={index} src={item.image} alt={item.description} width="40px" height="40px" />)}</>,
       ]}
       itemsPerRow={5} />
   );

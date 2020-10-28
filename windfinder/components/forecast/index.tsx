@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react"
+
 import WindArrow from "../../../core/components/images/windArrow";
-import Image from "../../../core/components/images";
 import Time from "../time";
 import Grid from "../../../core/components/structure/grid";
 import Wind from "../../../core/components/info/wind";
