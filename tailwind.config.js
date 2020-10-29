@@ -12,11 +12,9 @@ module.exports = {
       './openWeather/components/**/*.tsx',
       './windfinder/components/**/*.tsx',
     ],
-    options: {
-      whitelist: [
-        'grid-cols-5', // FIXME:
-      ]
-    }
+    // options: {
+    //   whitelist: []
+    // }
   },
   theme: {
     extend: {},

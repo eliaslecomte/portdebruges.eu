@@ -28,7 +28,7 @@ const WindSpeed: FC<Props> = ({ metersPerSecond, knots }) => {
   }, [ metersPerSecond]);
 
   return (
-    <div className={`border-l-8 border-${windIntensity} border-opacity-75 pl-2`}>
+    <div className={`border-l-8 ${windIntensity} border-opacity-75 pl-2`}>
       <p>{metersPerSecond}m/s of {knots}kt</p>
     </div>
     

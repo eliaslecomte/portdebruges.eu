@@ -36,8 +36,7 @@ const Forecast: FC<Props> = ({ style, predictionDate, temperature, windSpeed, wi
         <p>{roundedTemperature}°</p>,
         <p>{windSpeed} m/s</p>,
         <>{weather.map((item, index) => <Image key={index} src={item.image} alt={item.description} width="40px" height="40px" />)}</>,
-      ]}
-      itemsPerRow={5} />
+      ]} />
   );
 }
 

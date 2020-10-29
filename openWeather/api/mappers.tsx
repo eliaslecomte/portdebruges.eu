@@ -1,3 +1,4 @@
+import { findImageSrc } from "./parsers";
 import type { currentWeatherResponse, ThreeHourlyWeatherResponse } from "./serverSide";
 
 export function formatCurrentWeather(data: currentWeatherResponse) {
@@ -28,7 +29,7 @@ export function formatThreeHourlyForecast(data: ThreeHourlyWeatherResponse) {
       clouds: forecast.clouds.all,
       predictionDate: forecast.dt * 1000,
       weather: forecast.weather.map(weather => ({
-        image: `/openWeather/${weather.icon}@2x.png`,
+        image: `/weather/${findImageSrc(weather.icon)}`,
         description: weather.description,
       })),
     }));

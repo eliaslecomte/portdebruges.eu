@@ -15,9 +15,10 @@ type Props = {
   windSpeed: number;
   windGusts: number,
   windDirection: number,
+  waveHeight: number,
 };
 
-const Forecast: FC<Props> = ({ style, predictionDate, temperature, windSpeed, windGusts, windDirection }) => {
+const Forecast: FC<Props> = ({ style, predictionDate, temperature, windSpeed, windGusts, windDirection, waveHeight, }) => {
   const [ roundedTemperature, setRoundedTemperature ] = useState<number>();
 
   useEffect(() => {
@@ -33,8 +34,8 @@ const Forecast: FC<Props> = ({ style, predictionDate, temperature, windSpeed, wi
         <p>{roundedTemperature}°</p>,
         <p>{windSpeed} m/s</p>,
         <p>{windGusts} m/s</p>,
-      ]}
-      itemsPerRow={5} />
+        <p>{waveHeight}</p>
+      ]} />
   );
 }
 

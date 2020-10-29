@@ -15,7 +15,7 @@ const WindDirection: FC<Props> = ({ direction }) => {
   }, [ direction]);
 
   return (
-    <div className={`border-l-8 border-${windIntensity} border-opacity-75 pl-2`}>
+    <div className={`border-l-8 ${windIntensity} border-opacity-75 pl-2`}>
       <WindArrow direction={direction} />
       <p>{direction}°</p>
     </div>

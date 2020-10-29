@@ -12,21 +12,56 @@ type Props = {
 
 const WindfinderComponent:FC<Props> = ({ superforecast }) => {
   return (
-    <Block
-      title="Windvoorspelling"
-      description="De superforecast van Windfinder!">
-        <Header />
-        {superforecast.map((weather, index) => (
-          <Forecast
-            key={`super-forecast-${index}`}
-            style={mixins.rowColours(index)}
-            predictionDate={weather.date}
-            temperature={weather.temperature}
-            windSpeed={weather.windSpeed}
-            windGusts={weather.windGusts}
-            windDirection={weather.windDirection} />
-        ))}
-    </Block>
+    <>
+      <Block
+        title="Windvoorspelling 'vandaag'"
+        description="De superforecast van Windfinder!">
+          <Header />
+          {superforecast.today.map((weather, index) => (
+            <Forecast
+              key={`super-forecast-${index}`}
+              style={mixins.rowColours(index)}
+              predictionDate={weather.date}
+              temperature={weather.temperature}
+              windSpeed={weather.windSpeed}
+              windGusts={weather.windGusts}
+              windDirection={weather.windDirection}
+              waveHeight={weather.waveHeight} />
+          ))}
+      </Block>
+      <Block
+        title="Windvoorspelling morgen"
+        description="De superforecast van Windfinder!">
+          <Header />
+          {superforecast.tomorrow.map((weather, index) => (
+            <Forecast
+              key={`super-forecast-${index}`}
+              style={mixins.rowColours(index)}
+              predictionDate={weather.date}
+              temperature={weather.temperature}
+              windSpeed={weather.windSpeed}
+              windGusts={weather.windGusts}
+              windDirection={weather.windDirection}
+              waveHeight={weather.waveHeight} />
+          ))}
+      </Block>
+      <Block
+        title="Windvoorspelling overmorgen"
+        description="De superforecast van Windfinder!">
+          <Header />
+          {superforecast.dayAfterTomorrow.map((weather, index) => (
+            <Forecast
+              key={`super-forecast-${index}`}
+              style={mixins.rowColours(index)}
+              predictionDate={weather.date}
+              temperature={weather.temperature}
+              windSpeed={weather.windSpeed}
+              windGusts={weather.windGusts}
+              windDirection={weather.windDirection}
+              waveHeight={weather.waveHeight} />
+          ))}
+      </Block>
+    </>
   )
 };
 

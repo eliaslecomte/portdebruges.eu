@@ -18,8 +18,8 @@ const Header: FC<Props> = ({ }) => {
         <p>Temp..</p>,
         <p>Windsnel..</p>,
         <p>Gusts</p>,
-      ]}
-      itemsPerRow={5} />
+        <p>Wave height</p>
+      ]} />
   );
 }
 

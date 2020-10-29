@@ -21,7 +21,8 @@ const OpenWeatherComponent:FC<Props> = ({ currentWeather }) => {
         <Table values={[
           { title: 'Temperatuur', description: <Temperature current={currentWeather.temperature} feelsLike={currentWeather.temperatureFeelsLike} /> },
           { title: 'Zonsop & ondergang', description: <Sun sunrise={currentWeather.sunrise} sunset={currentWeather.sunset} /> },
-          { title: 'Wind', description: <Wind speed={currentWeather.windSpeed} gusts={currentWeather.windGusts} direction={currentWeather.windDirection} /> },
+          // TODO: remove
+          // { title: 'Wind', description: <Wind speed={currentWeather.windSpeed} gusts={currentWeather.windGusts} direction={currentWeather.windDirection} /> },
           { title: 'Wolken (in percentage)', description: <Clouds clouds={currentWeather.clouds} /> }
         ]} />
       </Block>
