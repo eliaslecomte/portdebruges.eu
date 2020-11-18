@@ -8,9 +8,9 @@ const Header: FC<Props> = () => {
 
   return (
     <div className="sm:mb-4 p-2 sm:p-4">
-      <h1>Welkom op <Link href="/"><a>Portdebruges.eu!</a></Link></h1>
+      <h1>Kite wind en weerbericht voor Zeebrugge.</h1>
       <p>
-        Beste kitesurf weer uit Zeebrugge sinds <code>26/09/2020</code>.
+        Sinds <code>26/09/2020</code> - <Link href="/"><a>Home</a></Link>.
       </p>
     </div>
   );

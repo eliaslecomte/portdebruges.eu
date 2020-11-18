@@ -14,7 +14,7 @@ const WindfinderComponent:FC<Props> = ({ superforecast }) => {
   return (
     <>
       <Block
-        title="Windvoorspelling 'vandaag'"
+        title="Windvoorspelling vandaag"
         description="De superforecast van Windfinder!">
           <Header />
           {superforecast.today.map((weather, index) => (
