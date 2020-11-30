@@ -1,6 +1,13 @@
 
 const mixins = {
   rowColours: (index: number) => index % 2 === 0 ? 'bg-gray-100' : 'bg-white',
+  windTextColours: {
+    boring: 'text-green-200',
+    safe: 'text-green-400',
+    awesome: 'text-green-600',
+    tricky: 'text-red-300',
+    danger: 'text-red-600',
+  },
   funColours: {
     boring: "border-green-200",
     safe: "border-green-400",

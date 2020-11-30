@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from "react"
 import WindArrow from "../../../core/components/images/windArrow";
 import Time from "../time";
 import Grid from "../../../core/components/structure/grid";
-import Wind from "../../../core/components/info/wind";
+import WindSpeedByMs from "../../../core/components/windSpeed/windSpeedByMs";
 
 // TODO: can we use array-item of ThreeHourlyWeather data type here?
 // Uses box alignment (https://tailwindcss.com/docs/justify-content)
@@ -20,7 +20,6 @@ type Props = {
 
 const Forecast: FC<Props> = ({ style, predictionDate, temperature, windSpeed, windGusts, windDirection, waveHeight, }) => {
   const [ roundedTemperature, setRoundedTemperature ] = useState<number>();
-
   useEffect(() => {
     setRoundedTemperature(Math.round(temperature));
   }, [temperature]);
@@ -32,9 +31,9 @@ const Forecast: FC<Props> = ({ style, predictionDate, temperature, windSpeed, wi
         <Time dateTimeString={predictionDate} />,
         <WindArrow direction={windDirection} />,
         <p>{roundedTemperature}°</p>,
-        <p>{windSpeed} m/s</p>,
-        <p>{windGusts} m/s</p>,
-        <p>{waveHeight}</p>
+        <WindSpeedByMs metersPerSecond={windSpeed} />,
+        <WindSpeedByMs metersPerSecond={windGusts} />,
+        <p>{waveHeight}m</p>
       ]} />
   );
 }
