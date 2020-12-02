@@ -1,4 +1,3 @@
-
 export const data = [
   {
     wah: 2.09,

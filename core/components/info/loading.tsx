@@ -1,15 +1,15 @@
-import { FC } from "react"
+import { FC } from 'react';
 
 export enum Size {
   small,
   regular,
   large,
-  huge,
+  huge
 }
 
 type Props = {
   size?: Size;
-}
+};
 
 const getStyleForSize = (size: Size) => {
   switch (size) {
@@ -22,7 +22,7 @@ const getStyleForSize = (size: Size) => {
     case Size.large:
       return 'w-4/4';
   }
-}
+};
 
 const Loading: FC<Props> = ({ size = Size.large }) => {
   return (
@@ -32,6 +32,6 @@ const Loading: FC<Props> = ({ size = Size.large }) => {
       </div>
     </div>
   );
-}
+};
 
 export default Loading;

@@ -6,7 +6,7 @@ export const metersPerSecondToKnots = (metersPerSecond?: number) => {
   }
 
   return undefined;
-}
+};
 
 export const giveWindIndication = (metersPerSecond?: number) => {
   if (typeof metersPerSecond === 'number') {
@@ -19,11 +19,11 @@ export const giveWindIndication = (metersPerSecond?: number) => {
     if (metersPerSecond < 15) {
       return WindIndication.good;
     }
-    if (metersPerSecond < 22) { 
+    if (metersPerSecond < 22) {
       return WindIndication.strong;
     }
     return WindIndication.danger;
   }
 
   return WindIndication.none;
-}
+};

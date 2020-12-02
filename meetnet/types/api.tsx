@@ -1,4 +1,3 @@
-
 export enum Zeebrugge {
   temperature = 'ZDITLU',
   windSpeed = 'ZDIWVC',
@@ -7,9 +6,9 @@ export enum Zeebrugge {
 }
 
 type ItemDetail = {
-  ID: Zeebrugge,
-  Timestamp: string,
-  Value: number,
-}
+  ID: Zeebrugge;
+  Timestamp: string;
+  Value: number;
+};
 
 export type currentDataResponse = Array<ItemDetail>;

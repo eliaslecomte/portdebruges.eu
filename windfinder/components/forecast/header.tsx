@@ -1,16 +1,14 @@
-import { FC } from "react"
+import { FC } from 'react';
 
-import Grid from "../../../core/components/structure/grid";
+import Grid from '../../../core/components/structure/grid';
 
 // TODO: can we use array-item of ThreeHourlyWeather data type here?
 // Uses box alignment (https://tailwindcss.com/docs/justify-content)
 
-type Props = {
-};
+type Props = {};
 
-const Header: FC<Props> = ({ }) => {
-
-  return(
+const Header: FC<Props> = ({}) => {
+  return (
     <Grid
       items={[
         <p>Tijd</p>,
@@ -19,8 +17,9 @@ const Header: FC<Props> = ({ }) => {
         <p>Windsnel..</p>,
         <p>Gusts</p>,
         <p>Wave height</p>
-      ]} />
+      ]}
+    />
   );
-}
+};
 
 export default Header;

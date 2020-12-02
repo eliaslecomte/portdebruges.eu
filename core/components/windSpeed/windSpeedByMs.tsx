@@ -1,9 +1,10 @@
-import { FC } from "react"
-import mixins from "../../mixins";
+import { FC } from 'react';
+
+import mixins from '../../mixins';
 
 type Props = {
   metersPerSecond: number;
-}
+};
 
 const styleForWindSpeed = (metersPerSecond: number) => {
   if (metersPerSecond > 40) {
@@ -15,16 +16,14 @@ const styleForWindSpeed = (metersPerSecond: number) => {
   } else if (metersPerSecond > 12) {
     return mixins.windTextColours.boring;
   }
-  
+
   return '';
-}
+};
 
 const WindSpeedByMs: FC<Props> = ({ metersPerSecond }) => {
-  const windSpeedStyle = styleForWindSpeed(metersPerSecond)
+  const windSpeedStyle = styleForWindSpeed(metersPerSecond);
 
-  return (
-    <p className={windSpeedStyle}>{metersPerSecond}m/s</p>
-  );
-}
+  return <p className={windSpeedStyle}>{metersPerSecond}m/s</p>;
+};
 
 export default WindSpeedByMs;

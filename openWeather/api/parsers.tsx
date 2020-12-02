@@ -34,7 +34,7 @@ export function findImageSrc(imageName: string) {
       return 'mist.svg';
     case '50n':
       return 'mist-at-night.svg';
-    default: 
+    default:
       return 'sunny.svg';
   }
 }

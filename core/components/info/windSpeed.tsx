@@ -1,10 +1,11 @@
-import { FC, useEffect, useState } from "react"
-import mixins from "../../mixins";
+import { FC, useEffect, useState } from 'react';
+
+import mixins from '../../mixins';
 
 type Props = {
   metersPerSecond: number;
   knots: number;
-}
+};
 
 const styleForWindSpeed = (metersPerSecond: number) => {
   if (metersPerSecond > 20) {
@@ -16,23 +17,24 @@ const styleForWindSpeed = (metersPerSecond: number) => {
   } else if (metersPerSecond > 6) {
     return mixins.funColours.boring;
   }
-  
-  return "";
-}
+
+  return '';
+};
 
 const WindSpeed: FC<Props> = ({ metersPerSecond, knots }) => {
-  const [ windIntensity, setWindIntensity ] = useState<string>("");
+  const [windIntensity, setWindIntensity] = useState<string>('');
 
   useEffect(() => {
     setWindIntensity(styleForWindSpeed(metersPerSecond));
-  }, [ metersPerSecond]);
+  }, [metersPerSecond]);
 
   return (
     <div className={`border-l-8 ${windIntensity} border-opacity-75 pl-2`}>
-      <p>{metersPerSecond}m/s of {knots}kt</p>
+      <p>
+        {metersPerSecond}m/s of {knots}kt
+      </p>
     </div>
-    
   );
-}
+};
 
 export default WindSpeed;

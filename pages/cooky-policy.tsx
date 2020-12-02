@@ -1,11 +1,11 @@
-import { FC } from "react";
-import Head from "next/head";
+import Head from 'next/head';
+import { FC } from 'react';
 
-import Table from "../core/components/structure/table";
-import Footer from "../core/components/footer";
-import Header from "../core/components/header";
-import Block from "../core/components/structure/block";
-import Page from "../core/components/structure/page";
+import Footer from '../core/components/footer';
+import Header from '../core/components/header';
+import Block from '../core/components/structure/block';
+import Page from '../core/components/structure/page';
+import Table from '../core/components/structure/table';
 
 const CookyPolicyPage: FC = () => {
   return (
@@ -18,36 +18,35 @@ const CookyPolicyPage: FC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Page
-        description="We gebruiken geen cookies om je te tracken, enkel technische cookies 🍪.">
-
+      <Page description="We gebruiken geen cookies om je te tracken, enkel technische cookies 🍪.">
         <div className="grid grid-cols-1 sm:grid-cols-2">
-
           <Block
             title="meetnetAccessToken"
             description="Authenticatie token voor meetnet data."
             showDescriptionMobile>
-              <Table values={[
+            <Table
+              values={[
                 { title: 'Domein', description: <p>portdebruges.eu</p> },
-                { title: 'Duur', description: <p>1 uurtje</p> },
-              ]} />
-            </Block>
+                { title: 'Duur', description: <p>1 uurtje</p> }
+              ]}
+            />
+          </Block>
 
           <Block
             title="ARRAfinity"
             description="Sessie cookie voor meetnet data."
             showDescriptionMobile>
-              <Table values={[
+            <Table
+              values={[
                 { title: 'Domein', description: <p>.meetnetvlaamsebanken.be</p> },
-                { title: 'Duur', description: <p>Sessie</p> },
-              ]} />
-            </Block>
-
+                { title: 'Duur', description: <p>Sessie</p> }
+              ]}
+            />
+          </Block>
         </div>
-
       </Page>
     </>
   );
-}
+};
 
 export default CookyPolicyPage;

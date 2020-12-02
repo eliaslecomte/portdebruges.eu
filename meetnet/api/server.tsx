@@ -1,6 +1,6 @@
 type accessTokenResponse = {
   access_token: string;
-}
+};
 
 export async function getAccessToken() {
   const formData = [];
@@ -14,9 +14,9 @@ export async function getAccessToken() {
   formData.push(`password=${encodeURIComponent(password)}`);
   const response = await fetch('https://api.meetnetvlaamsebanken.be/Token', {
     method: 'POST',
-    body: formData.join("&"),
+    body: formData.join('&'),
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Type': 'application/x-www-form-urlencoded'
     }
   });
   const data: accessTokenResponse = await response.json();

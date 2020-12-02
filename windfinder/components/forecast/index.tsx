@@ -1,30 +1,39 @@
-import { FC, useEffect, useState } from "react"
+/* eslint-disable react/jsx-key */
+import { FC, useEffect, useState } from 'react';
 
-import WindArrow from "../../../core/components/images/windArrow";
-import Time from "../time";
-import Grid from "../../../core/components/structure/grid";
-import WindSpeedByMs from "../../../core/components/windSpeed/windSpeedByMs";
+import WindArrow from '../../../core/components/images/windArrow';
+import Grid from '../../../core/components/structure/grid';
+import WindSpeedByMs from '../../../core/components/windSpeed/windSpeedByMs';
+import Time from '../time';
 
 // TODO: can we use array-item of ThreeHourlyWeather data type here?
 // Uses box alignment (https://tailwindcss.com/docs/justify-content)
 
 type Props = {
-  style?: string,
+  style?: string;
   predictionDate: string;
   temperature: number;
   windSpeed: number;
-  windGusts: number,
-  windDirection: number,
-  waveHeight: number,
+  windGusts: number;
+  windDirection: number;
+  waveHeight: number;
 };
 
-const Forecast: FC<Props> = ({ style, predictionDate, temperature, windSpeed, windGusts, windDirection, waveHeight, }) => {
-  const [ roundedTemperature, setRoundedTemperature ] = useState<number>();
+const Forecast: FC<Props> = ({
+  style,
+  predictionDate,
+  temperature,
+  windSpeed,
+  windGusts,
+  windDirection,
+  waveHeight
+}) => {
+  const [roundedTemperature, setRoundedTemperature] = useState<number>();
   useEffect(() => {
     setRoundedTemperature(Math.round(temperature));
   }, [temperature]);
 
-  return(
+  return (
     <Grid
       style={style}
       items={[
@@ -34,8 +43,9 @@ const Forecast: FC<Props> = ({ style, predictionDate, temperature, windSpeed, wi
         <WindSpeedByMs metersPerSecond={windSpeed} />,
         <WindSpeedByMs metersPerSecond={windGusts} />,
         <p>{waveHeight}m</p>
-      ]} />
+      ]}
+    />
   );
-}
+};
 
 export default Forecast;
