@@ -71,7 +71,7 @@ export const getStaticProps = async () => {
       threeHourlyWeather,
       superforecast
     },
-    revalidate: 60 * 60 // update weather news every hour
+    revalidate: 60 * 60 * 30 // update weather news every 30 hours
   };
 };
 
