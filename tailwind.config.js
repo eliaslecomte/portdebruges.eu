@@ -10,7 +10,7 @@ module.exports = {
       './pages/**/*.tsx',
       './meetnet/components/**/*.tsx',
       './openWeather/components/**/*.tsx',
-      './windfinder/components/**/*.tsx',
+      './windfinder/components/**/*.tsx'
     ]
   },
   theme: {

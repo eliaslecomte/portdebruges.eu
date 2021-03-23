@@ -9,13 +9,10 @@ import MeetnetComponent from '../meetnet/components/meetnetComponent';
 import { getCurrentWeather, getThreeHourlyWeather } from '../openWeather/api/serverSide';
 import OpenWeatherComponent from '../openWeather/components/currentWeatherComponent';
 import ThreeHourlyWeatherComponent from '../openWeather/components/threeHourlyWeatherComponent';
-import { getSuperforecasts } from '../windfinder/api/serverSide';
-import WindfinderComponent from '../windfinder/components/windfinderComponent';
 
 export const Home: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   currentWeather,
-  threeHourlyWeather,
-  superforecast
+  threeHourlyWeather
 }) => {
   const [error, setError] = useState<string>();
   const [warning, setWarning] = useState<string>();
@@ -49,9 +46,9 @@ export const Home: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          <WindfinderComponent superforecast={superforecast} />
+          {/* <WindfinderComponent superforecast={superforecast} /> */}
 
-          {/* <ThreeHourlyWeatherComponent threeHourlyWeather={threeHourlyWeather} /> */}
+          <ThreeHourlyWeatherComponent threeHourlyWeather={threeHourlyWeather} />
         </div>
       </Page>
     </>
@@ -59,19 +56,17 @@ export const Home: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
 };
 
 export const getStaticProps = async () => {
-  const [currentWeather, threeHourlyWeather, superforecast] = await Promise.all([
+  const [currentWeather, threeHourlyWeather] = await Promise.all([
     getCurrentWeather(),
-    getThreeHourlyWeather(),
-    getSuperforecasts()
+    getThreeHourlyWeather()
   ]);
 
   return {
     props: {
       currentWeather,
-      threeHourlyWeather,
-      superforecast
+      threeHourlyWeather
     },
-    revalidate: 60 * 60 * 30 // update weather news every 30 hours
+    revalidate: 60 * 60 * 1 // update weather news every hour
   };
 };
 
