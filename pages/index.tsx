@@ -39,17 +39,17 @@ export const Home: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
             {warning ? <Warning description={warning} /> : null}
           </>
         }>
-        <div className="grid grid-cols-1 sm:grid-cols-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           <MeetnetComponent setError={setError} setWarning={setWarning} />
 
           <OpenWeatherComponent currentWeather={currentWeather} />
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {/* <WindfinderComponent superforecast={superforecast} /> */}
 
           <ThreeHourlyWeatherComponent threeHourlyWeather={threeHourlyWeather} />
         </div>
+
+        {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"> */}
+        {/* <WindfinderComponent superforecast={superforecast} /> */}
+        {/* </div> */}
       </Page>
     </>
   );
