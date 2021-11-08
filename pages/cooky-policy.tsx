@@ -1,8 +1,6 @@
 import Head from 'next/head';
 import { FC } from 'react';
 
-import Footer from '../core/components/footer';
-import Header from '../core/components/header';
 import Block from '../core/components/structure/block';
 import Page from '../core/components/structure/page';
 import Table from '../core/components/structure/table';

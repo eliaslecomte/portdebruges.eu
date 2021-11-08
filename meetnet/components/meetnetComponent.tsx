@@ -30,11 +30,11 @@ const MeetnetComponent: FC<Props> = ({ setError, setWarning }) => {
     {
       revalidateOnReconnect: false,
       revalidateOnFocus: false,
-      initialData: meetnetAccessTokenFromCookie
+      fallbackData: meetnetAccessTokenFromCookie
         ? {
             accessToken: meetnetAccessTokenFromCookie
           }
-        : undefined
+        : null
     }
   );
   // https://swr.vercel.app/docs/conditional-fetching
