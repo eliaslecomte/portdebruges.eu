@@ -26,10 +26,9 @@ export const Home: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
         <link rel="icon" href="/favicon.ico" />
 
         <script
-          async
           defer
-          data-domain="portdebruges.eu"
-          src="https://stats.createweb.be/js/plausible.js"></script>
+          src='https://static.cloudflareinsights.com/beacon.min.js'
+          data-cf-beacon='{"token": "14f9ae94344a4b98b677c137a5ee8069"}'></script>
       </Head>
 
       <Page
