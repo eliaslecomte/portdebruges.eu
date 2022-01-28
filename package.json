@@ -15,7 +15,7 @@
     "autoprefixer": "10.4.0",
     "date-fns": "2.27.0",
     "date-fns-tz": "1.2.2",
-    "next": "12.0.7",
+    "next": "12.0.9",
     "nookies": "2.5.2",
     "postcss": "8.4.5",
     "postcss-preset-env": "7.1.0",
