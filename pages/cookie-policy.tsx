@@ -5,7 +5,7 @@ import Block from '../core/components/structure/block';
 import Page from '../core/components/structure/page';
 import Table from '../core/components/structure/table';
 
-const CookyPolicyPage: FC = () => {
+const CookiePolicyPage: FC = () => {
   return (
     <>
       {/* TODO: Make reusable */}
@@ -47,4 +47,4 @@ const CookyPolicyPage: FC = () => {
   );
 };
 
-export default CookyPolicyPage;
+export default CookiePolicyPage;
