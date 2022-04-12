@@ -10,7 +10,7 @@ export async function refreshAccessToken() {
   const response = await fetch('/api/meetnet/accessToken');
   const data: accessTokenResponse = await response.json();
   return {
-    accessToken: data.accessToken
+    accessToken: data.accessToken,
   };
 }
 
@@ -20,14 +20,14 @@ export async function getCurrentMeetnetData(accessToken: string) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${accessToken}`
-    }
+      Authorization: `Bearer ${accessToken}`,
+    },
   });
 
   if (!response.ok) {
     if (response.status === 401) {
       throw new AuthenticationError(
-        'Authentication error while fetching https://api.meetnetvlaamsebanken.be/V2/CurrentData'
+        'Authentication error while fetching https://api.meetnetvlaamsebanken.be/V2/CurrentData',
       );
     } else {
       throw new Error('Error while fetching https://api.meetnetvlaamsebanken.be/V2/CurrentData');

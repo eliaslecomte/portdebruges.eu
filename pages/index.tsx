@@ -12,7 +12,7 @@ import ThreeHourlyWeatherComponent from '../openWeather/components/threeHourlyWe
 
 export const Home: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   currentWeather,
-  threeHourlyWeather
+  threeHourlyWeather,
 }) => {
   const [error, setError] = useState<string>();
   const [warning, setWarning] = useState<string>();
@@ -27,7 +27,7 @@ export const Home: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
         <script
           defer
-          src='https://static.cloudflareinsights.com/beacon.min.js'
+          src="https://static.cloudflareinsights.com/beacon.min.js"
           data-cf-beacon='{"token": "14f9ae94344a4b98b677c137a5ee8069"}'></script>
       </Head>
 
@@ -57,15 +57,15 @@ export const Home: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
 export const getStaticProps = async () => {
   const [currentWeather, threeHourlyWeather] = await Promise.all([
     getCurrentWeather(),
-    getThreeHourlyWeather()
+    getThreeHourlyWeather(),
   ]);
 
   return {
     props: {
       currentWeather,
-      threeHourlyWeather
+      threeHourlyWeather,
     },
-    revalidate: 60 * 60 * 1 // update weather news every hour
+    revalidate: 60 * 60 * 1, // update weather news every hour
   };
 };
 

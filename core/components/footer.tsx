@@ -7,7 +7,13 @@ type Props = {};
 const Footer: FC<Props> = () => {
   return (
     <div className="mt-4 p-4">
-      <Image className="float-left" src="/eliaslecomte_small.png" alt='logo' width="35" height="35" />
+      <Image
+        className="float-left"
+        src="/eliaslecomte_small.png"
+        alt="logo"
+        width="35"
+        height="35"
+      />
       <Link href="https://eliaslecomte.be">
         <a className="p-1" target="_blank">
           Made with ♥ by Eliaslecomte.be

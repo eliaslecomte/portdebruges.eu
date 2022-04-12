@@ -25,7 +25,7 @@ const CookiePolicyPage: FC = () => {
             <Table
               values={[
                 { title: 'Domein', description: <p>portdebruges.eu</p> },
-                { title: 'Duur', description: <p>1 uurtje</p> }
+                { title: 'Duur', description: <p>1 uurtje</p> },
               ]}
             />
           </Block>
@@ -37,7 +37,7 @@ const CookiePolicyPage: FC = () => {
             <Table
               values={[
                 { title: 'Domein', description: <p>.meetnetvlaamsebanken.be</p> },
-                { title: 'Duur', description: <p>Sessie</p> }
+                { title: 'Duur', description: <p>Sessie</p> },
               ]}
             />
           </Block>

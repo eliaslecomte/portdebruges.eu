@@ -16,8 +16,8 @@ export async function getAccessToken() {
     method: 'POST',
     body: formData.join('&'),
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
   });
   const data: accessTokenResponse = await response.json();
   return data.access_token;

@@ -1,7 +1,7 @@
 module.exports = {
   future: {
     removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true
+    purgeLayersByDefault: true,
   },
   purge: {
     enabled: Boolean(process.env.NODE_ENV === 'production'),
@@ -10,12 +10,12 @@ module.exports = {
       './pages/**/*.tsx',
       './meetnet/components/**/*.tsx',
       './openWeather/components/**/*.tsx',
-      './windfinder/components/**/*.tsx'
-    ]
+      './windfinder/components/**/*.tsx',
+    ],
   },
   theme: {
-    extend: {}
+    extend: {},
   },
   variants: {},
-  plugins: []
+  plugins: [],
 };

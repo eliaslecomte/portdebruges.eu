@@ -26,7 +26,7 @@ const Forecast: FC<Props> = ({
   temperature,
   windSpeed,
   windDirection,
-  weather
+  weather,
 }) => {
   const [roundedTemperature, setRoundedTemperature] = useState<number>();
 
@@ -46,7 +46,7 @@ const Forecast: FC<Props> = ({
           {weather.map((item, index) => (
             <Image key={index} src={item.image} alt={item.description} width="40px" height="40px" />
           ))}
-        </>
+        </>,
       ]}
     />
   );

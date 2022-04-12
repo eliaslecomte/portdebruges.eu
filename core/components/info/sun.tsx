@@ -5,7 +5,7 @@ const formatTime = (unixTimestamp: number) => {
   // TODO: should not be unix
   const datetime = new Date(unixTimestamp * 1000);
   return `${datetime.getHours().toLocaleString(undefined, {
-    minimumIntegerDigits: 2
+    minimumIntegerDigits: 2,
   })}:${datetime.getMinutes().toLocaleString(undefined, { minimumIntegerDigits: 2 })}`;
 };
 

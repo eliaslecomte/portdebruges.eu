@@ -45,9 +45,9 @@ export async function getSuperforecasts() {
       headers: {
         'x-rapidapi-host': 'api-windfinder-pro.p.rapidapi.com',
         'x-rapidapi-key': openWeatherApiKey,
-        useQueryString: 'true'
-      }
-    }
+        useQueryString: 'true',
+      },
+    },
   );
   const dataResponse: superforecastsResponse = await response.json();
   return formatSuperforecast(dataResponse);

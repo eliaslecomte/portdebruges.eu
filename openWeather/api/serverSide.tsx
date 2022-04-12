@@ -38,7 +38,7 @@ export type CurrentWeather = ReturnType<typeof formatCurrentWeather>;
 export async function getCurrentWeather() {
   const openWeatherApiKey = getOpenWeatherApiKey();
   const response = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=zeebrugge,be&units=metric&lang=nl&appid=${openWeatherApiKey}`
+    `https://api.openweathermap.org/data/2.5/weather?q=zeebrugge,be&units=metric&lang=nl&appid=${openWeatherApiKey}`,
   );
   const dataResponse: currentWeatherResponse = await response.json();
   return formatCurrentWeather(dataResponse);
@@ -74,7 +74,7 @@ export type ThreeHourlyWeather = ReturnType<typeof formatThreeHourlyForecast>;
 export async function getThreeHourlyWeather() {
   const openWeatherApiKey = getOpenWeatherApiKey();
   const response = await fetch(
-    `https://api.openweathermap.org/data/2.5/forecast?q=zeebrugge,be&units=metric&lang=nl&appid=${openWeatherApiKey}`
+    `https://api.openweathermap.org/data/2.5/forecast?q=zeebrugge,be&units=metric&lang=nl&appid=${openWeatherApiKey}`,
   );
   const dataResponse: ThreeHourlyWeatherResponse = await response.json();
   return formatThreeHourlyForecast(dataResponse);

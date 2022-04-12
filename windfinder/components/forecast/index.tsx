@@ -26,7 +26,7 @@ const Forecast: FC<Props> = ({
   windSpeed,
   windGusts,
   windDirection,
-  waveHeight
+  waveHeight,
 }) => {
   const [roundedTemperature, setRoundedTemperature] = useState<number>();
   useEffect(() => {
@@ -42,7 +42,7 @@ const Forecast: FC<Props> = ({
         <p>{roundedTemperature}°</p>,
         <WindSpeedByMs metersPerSecond={windSpeed} />,
         <WindSpeedByMs metersPerSecond={windGusts} />,
-        <p>{waveHeight}m</p>
+        <p>{waveHeight}m</p>,
       ]}
     />
   );

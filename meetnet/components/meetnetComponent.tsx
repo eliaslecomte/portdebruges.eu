@@ -24,33 +24,33 @@ const MeetnetComponent: FC<Props> = ({ setError, setWarning }) => {
 
   // TODO: store these keys with the api methods
   // or move the useSWR to the api layer completely
-  const { data: meetnetAccessTokenResponse, error, mutate: refreshMeetnetAccessToken } = useSWR(
-    'meetnet/accessToken',
-    refreshAccessToken,
-    {
-      revalidateOnReconnect: false,
-      revalidateOnFocus: false,
-      fallbackData: meetnetAccessTokenFromCookie
-        ? {
-            accessToken: meetnetAccessTokenFromCookie
-          }
-        : null
-    }
-  );
+  const {
+    data: meetnetAccessTokenResponse,
+    error,
+    mutate: refreshMeetnetAccessToken,
+  } = useSWR('meetnet/accessToken', refreshAccessToken, {
+    revalidateOnReconnect: false,
+    revalidateOnFocus: false,
+    fallbackData: meetnetAccessTokenFromCookie
+      ? {
+          accessToken: meetnetAccessTokenFromCookie,
+        }
+      : null,
+  });
   // https://swr.vercel.app/docs/conditional-fetching
   const { data: currentMeetnetData, error: meetnetApiError } = useSWR(
     meetnetAccessTokenResponse
       ? ['meetnet/currentMeetnetData', meetnetAccessTokenResponse.accessToken]
       : null,
     (url: string, accessToken: string) => getCurrentMeetnetData(accessToken),
-    { refreshInterval: 60 * 1000 }
+    { refreshInterval: 60 * 1000 },
   );
 
   useEffect(() => {
     if (meetnetApiError) {
       if (meetnetApiError instanceof AuthenticationError) {
         setWarning(
-          'Nog steeds hier? Even alles updaten, even geduld. Veel plezier op het water🪁!'
+          'Nog steeds hier? Even alles updaten, even geduld. Veel plezier op het water🪁!',
         );
         refreshMeetnetAccessToken();
       } else {
@@ -69,7 +69,7 @@ const MeetnetComponent: FC<Props> = ({ setError, setWarning }) => {
     ) {
       setCookie(null, 'meetnetAccessToken', meetnetAccessTokenResponse.accessToken, {
         maxAge: 60 * 60, // meetnet access tokens expire after 1 hour
-        path: '/'
+        path: '/',
       });
     }
   }, [meetnetAccessTokenResponse]);
@@ -107,7 +107,7 @@ const MeetnetComponent: FC<Props> = ({ setError, setWarning }) => {
             ) : (
               <Loading size={Size.small} />
             ),
-            showUpdated: isUpdated
+            showUpdated: isUpdated,
           },
           {
             title: 'Wind snelheid',
@@ -121,7 +121,7 @@ const MeetnetComponent: FC<Props> = ({ setError, setWarning }) => {
               ) : (
                 <Loading size={Size.regular} />
               ),
-            showUpdated: isUpdated
+            showUpdated: isUpdated,
           },
           {
             title: 'Gusts',
@@ -135,7 +135,7 @@ const MeetnetComponent: FC<Props> = ({ setError, setWarning }) => {
               ) : (
                 <Loading size={Size.regular} />
               ),
-            showUpdated: isUpdated
+            showUpdated: isUpdated,
           },
           {
             title: 'Windrichting',
@@ -144,7 +144,7 @@ const MeetnetComponent: FC<Props> = ({ setError, setWarning }) => {
             ) : (
               <Loading size={Size.small} />
             ),
-            showUpdated: isUpdated
+            showUpdated: isUpdated,
           },
           {
             title: 'Laatste update',
@@ -155,8 +155,8 @@ const MeetnetComponent: FC<Props> = ({ setError, setWarning }) => {
             ) : (
               <Loading />
             ),
-            showUpdated: isUpdated
-          }
+            showUpdated: isUpdated,
+          },
         ]}
       />
     </Block>

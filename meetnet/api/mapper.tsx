@@ -13,13 +13,13 @@ export function formatData(data: currentDataResponse) {
     windSpeed: {
       metersPerSecond: windSpeed,
       knots: metersPerSecondToKnots(windSpeed),
-      strength: giveWindIndication(windSpeed)
+      strength: giveWindIndication(windSpeed),
     },
     windGusts: {
       metersPerSecond: windGusts,
       knots: metersPerSecondToKnots(windGusts),
-      strength: giveWindIndication(windGusts)
+      strength: giveWindIndication(windGusts),
     },
-    windDirection: data.filter((item) => item.ID === Zeebrugge.windDirection)[0].Value
+    windDirection: data.filter((item) => item.ID === Zeebrugge.windDirection)[0].Value,
   };
 }

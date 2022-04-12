@@ -8,6 +8,6 @@ Combining multiple weather/wind forecasts and measurements to make kitesurfing s
 
 In first phase we'll just fetch all data at runtime from different sources.
 
-* Meetnet
-* OpenWeatherMap
-* Windfinder
+- Meetnet
+- OpenWeatherMap
+- Windfinder

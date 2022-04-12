@@ -4,7 +4,7 @@ export enum Size {
   small,
   regular,
   large,
-  huge
+  huge,
 }
 
 type Props = {

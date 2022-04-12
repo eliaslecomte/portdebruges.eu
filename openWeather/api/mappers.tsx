@@ -12,7 +12,7 @@ export function formatCurrentWeather(data: currentWeatherResponse) {
     windDirection: data.wind.deg,
     clouds: data.clouds.all,
     sunrise: data.sys.sunrise,
-    sunset: data.sys.sunset
+    sunset: data.sys.sunset,
   };
 }
 
@@ -28,7 +28,7 @@ export function formatThreeHourlyForecast(data: ThreeHourlyWeatherResponse) {
     predictionDate: forecast.dt * 1000,
     weather: forecast.weather.map((weather) => ({
       image: `/weather/${findImageSrc(weather.icon)}`,
-      description: weather.description
-    }))
+      description: weather.description,
+    })),
   }));
 }

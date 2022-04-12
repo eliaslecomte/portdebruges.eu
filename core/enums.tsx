@@ -3,5 +3,5 @@ export enum WindIndication {
   light,
   good,
   strong,
-  danger
+  danger,
 }

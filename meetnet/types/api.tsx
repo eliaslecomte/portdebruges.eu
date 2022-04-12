@@ -2,7 +2,7 @@ export enum Zeebrugge {
   temperature = 'ZDITLU',
   windSpeed = 'ZDIWVC',
   windGust = 'ZDIWC1',
-  windDirection = 'ZDIWRS'
+  windDirection = 'ZDIWRS',
 }
 
 type ItemDetail = {

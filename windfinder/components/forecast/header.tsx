@@ -16,7 +16,7 @@ const Header: FC<Props> = ({}) => {
         <p>Temp..</p>,
         <p>Windsnel..</p>,
         <p>Gusts</p>,
-        <p>Wave height</p>
+        <p>Wave height</p>,
       ]}
     />
   );

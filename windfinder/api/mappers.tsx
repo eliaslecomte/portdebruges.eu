@@ -14,7 +14,7 @@ export function formatSuperforecast(data: superforecastsResponse) {
     temperature: forecast.at,
     temperatureFeelsLike: forecast.fl,
     clouds: forecast.cl,
-    date: forecast.dtl
+    date: forecast.dtl,
   }));
 
   // TODO: move
@@ -45,6 +45,6 @@ export function formatSuperforecast(data: superforecastsResponse) {
     dayAfterTomorrow: mappedData.filter((item) => {
       const dateAsNumber = utcToZonedTime(item.date, 'Europe/Brussels');
       return dateAsNumber >= dayAfterTomorrowStart && dateAsNumber <= dayAfterTomorrowEnd;
-    })
+    }),
   };
 }

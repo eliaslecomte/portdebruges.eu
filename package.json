@@ -9,7 +9,7 @@
     "start": "next start",
     "export": "next export",
     "lint": "npx eslint --fix",
-    "format": "prettier ."
+    "format": "prettier . --write"
   },
   "dependencies": {
     "autoprefixer": "10.4.4",
