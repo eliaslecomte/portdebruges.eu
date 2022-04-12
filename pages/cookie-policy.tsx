@@ -1,5 +1,5 @@
-import Head from 'next/head';
 import { FC } from 'react';
+import Head from 'next/head';
 
 import Block from '../core/components/structure/block';
 import Page from '../core/components/structure/page';

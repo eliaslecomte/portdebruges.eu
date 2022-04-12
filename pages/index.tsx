@@ -1,6 +1,6 @@
+import { FC, useState } from 'react';
 import type { InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
-import { FC, useState } from 'react';
 
 import Error from '../core/components/alerts/error';
 import Warning from '../core/components/alerts/warning';

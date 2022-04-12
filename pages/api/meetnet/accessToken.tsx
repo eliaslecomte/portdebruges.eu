@@ -2,9 +2,11 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { getAccessToken } from '../../../meetnet/api/server';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const accessToken = await getAccessToken();
+const accessToken = async (req: NextApiRequest, res: NextApiResponse) => {
+  const newToken = await getAccessToken();
   res.statusCode = 200;
   res.setHeader('Content-Type', 'application/json');
-  res.end(JSON.stringify({ accessToken }));
+  res.end(JSON.stringify({ accessToken: newToken }));
 };
+
+export default accessToken;
