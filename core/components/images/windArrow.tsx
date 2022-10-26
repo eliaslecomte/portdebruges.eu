@@ -11,8 +11,8 @@ const WindArrow: FC<Props> = ({ direction }) => {
       style={{ transform: `rotate(${direction}deg)` }}
       className="float-left mr-1"
       src="/weather/wind.svg"
-      width="40px"
-      height="40px"
+      width={40}
+      height={40}
     />
   );
   // return (

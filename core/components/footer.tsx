@@ -14,19 +14,13 @@ const Footer: FC<Props> = () => {
         width="35"
         height="35"
       />
-      <Link href="https://eliaslecomte.be">
-        <a className="p-1" target="_blank">
-          Made with ♥ by Eliaslecomte.be
-        </a>
+      <Link href="https://eliaslecomte.be" className="p-1" target="_blank">
+        Made with ♥ by Eliaslecomte.be
       </Link>
       <span className="pl-2 pr-2">⚓</span>
-      <Link href="/cookie-policy">
-        <a>Cookie Policy</a>
-      </Link>
+      <Link href="/cookie-policy">Cookie Policy</Link>
       <span className="pl-2 pr-2">⚓</span>
-      <Link href="/">
-        <a>Home</a>
-      </Link>
+      <Link href="/">Home</Link>
     </div>
   );
 };

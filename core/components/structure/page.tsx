@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 
 import Footer from '../footer';
 import Header from '../header';
@@ -8,7 +8,7 @@ type Props = {
   description?: string;
 };
 
-const Page: FC<Props> = ({ topComponent, description, children }) => {
+const Page = ({ topComponent, description, children }: PropsWithChildren<Props>) => {
   // FIXME store page padding as mixin?
   return (
     <div className="xl:container xl:mx-auto p-4">

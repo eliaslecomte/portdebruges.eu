@@ -9,9 +9,7 @@ const Header: FC<Props> = () => {
       <h1>Kite wind en weerbericht voor Zeebrugge.</h1>
       <p>
         Sinds <code>26/09/2020</code> -{' '}
-        <Link href="/">
-          <a>Home</a>
-        </Link>
+        <Link href="/">Home</Link>
         .
       </p>
     </div>

@@ -44,7 +44,7 @@ const Forecast: FC<Props> = ({
         <p>{windSpeed} m/s</p>,
         <>
           {weather.map((item, index) => (
-            <Image key={index} src={item.image} alt={item.description} width="40px" height="40px" />
+            <Image key={index} src={item.image} alt={item.description} width={40} height={40} />
           ))}
         </>,
       ]}
