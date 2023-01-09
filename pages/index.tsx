@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 import type { InferGetStaticPropsType } from 'next';
 import Head from 'next/head';
+import Script from 'next/script';
 
 import Error from '../core/components/alerts/error';
 import Warning from '../core/components/alerts/warning';
@@ -24,12 +25,12 @@ export const Home: FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png " />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="icon" href="/favicon.ico" />
-
-        <script
-          defer
-          src="https://static.cloudflareinsights.com/beacon.min.js"
-          data-cf-beacon='{"token": "14f9ae94344a4b98b677c137a5ee8069"}'></script>
       </Head>
+
+      <Script
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "14f9ae94344a4b98b677c137a5ee8069"}'
+      />
 
       <Page
         topComponent={
