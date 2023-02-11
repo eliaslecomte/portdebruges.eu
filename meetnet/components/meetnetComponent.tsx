@@ -19,7 +19,7 @@ type Props = {
   setWarning: Function;
 };
 
-const MeetnetComponent: FC<Props> = ({ setError, setWarning }) => {
+const MeetnetComponent = ({ setError, setWarning }: Props) => {
   const meetnetAccessTokenFromCookie = parseCookies().meetnetAccessToken;
 
   // TODO: store these keys with the api methods
@@ -35,14 +35,15 @@ const MeetnetComponent: FC<Props> = ({ setError, setWarning }) => {
       ? {
           accessToken: meetnetAccessTokenFromCookie,
         }
-      : null,
+      : undefined,
   });
+
   // https://swr.vercel.app/docs/conditional-fetching
   const { data: currentMeetnetData, error: meetnetApiError } = useSWR(
     meetnetAccessTokenResponse
       ? ['meetnet/currentMeetnetData', meetnetAccessTokenResponse.accessToken]
       : null,
-    (url: string, accessToken: string) => getCurrentMeetnetData(accessToken),
+    ([_url, accessToken]) => getCurrentMeetnetData(accessToken),
     { refreshInterval: 60 * 1000 },
   );
 

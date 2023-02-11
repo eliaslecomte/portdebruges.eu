@@ -2,19 +2,24 @@ import type { currentDataResponse } from '../types/api';
 import { AuthenticationError } from './errors';
 import { formatData } from './mapper';
 
-type accessTokenResponse = {
+/**
+ * Api docs: https://api.meetnetvlaamsebanken.be/V2-help/
+ */
+
+type AccessTokenResponse = {
   accessToken: string;
 };
 
 export async function refreshAccessToken() {
   const response = await fetch('/api/meetnet/accessToken');
-  const data: accessTokenResponse = await response.json();
+  const data: AccessTokenResponse = await response.json();
   return {
     accessToken: data.accessToken,
   };
 }
 
-export async function getCurrentMeetnetData(accessToken: string) {
+export async function getCurrentMeetnetData(accessToken: AccessTokenResponse['accessToken']) {
+  console.log('fetching currentData with', accessToken);
   const response = await fetch('https://api.meetnetvlaamsebanken.be/V2/CurrentData', {
     body: JSON.stringify({ IDs: ['ZDITLU', 'ZDIWVC', 'ZDIWC1', 'ZDIWRS'] }),
     method: 'POST',
