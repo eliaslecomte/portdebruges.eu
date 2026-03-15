@@ -5,18 +5,16 @@ import Grid from '../../../core/components/structure/grid';
 // TODO: can we use array-item of ThreeHourlyWeather data type here?
 // Uses box alignment (https://tailwindcss.com/docs/justify-content)
 
-type Props = {};
-
-const Header: FC<Props> = ({}) => {
+const Header: FC = () => {
   return (
     <Grid
       items={[
-        <p>Tijd</p>,
-        <p>Windr..</p>,
-        <p>Temp..</p>,
-        <p>Windsnel..</p>,
-        <p>Gusts</p>,
-        <p>Wave height</p>,
+        <p key="tijd">Tijd</p>,
+        <p key="windr">Windr..</p>,
+        <p key="temp">Temp..</p>,
+        <p key="winds">Windsnel..</p>,
+        <p key="gusts">Gusts</p>,
+        <p key="wave">Wave height</p>,
       ]}
     />
   );

@@ -1,10 +1,10 @@
 import { FC } from 'react';
 
+import Header from './forecast/header';
+import Forecast from './forecast/index';
 import Block from '../../core/components/structure/block';
 import mixins from '../../core/mixins';
 import type { Superforecast } from '../api/serverSide';
-import Header from './forecast/header';
-import Forecast from './forecast/index';
 
 type Props = {
   superforecast: Superforecast;

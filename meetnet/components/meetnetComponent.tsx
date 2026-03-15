@@ -1,10 +1,8 @@
+import { useEffect, useState } from 'react';
 import { parseCookies, setCookie } from 'nookies';
-import { FC, useEffect, useState } from 'react';
 import useSWR from 'swr';
 
-import WindArrow from '../../core/components/images/windArrow';
 import Datetime from '../../core/components/info/datetime';
-import Direction from '../../core/components/info/direction';
 import Loading, { Size } from '../../core/components/info/loading';
 import Temperature from '../../core/components/info/temperature';
 import WindDirection from '../../core/components/info/windDirection';
@@ -24,26 +22,26 @@ const MeetnetComponent = ({ setError, setWarning }: Props) => {
 
   // TODO: store these keys with the api methods
   // or move the useSWR to the api layer completely
-  const {
-    data: meetnetAccessTokenResponse,
-    error,
-    mutate: refreshMeetnetAccessToken,
-  } = useSWR('meetnet/accessToken', refreshAccessToken, {
-    revalidateOnReconnect: false,
-    revalidateOnFocus: false,
-    fallbackData: meetnetAccessTokenFromCookie
-      ? {
-          accessToken: meetnetAccessTokenFromCookie,
-        }
-      : undefined,
-  });
+  const { data: meetnetAccessTokenResponse, mutate: refreshMeetnetAccessToken } = useSWR(
+    'meetnet/accessToken',
+    refreshAccessToken,
+    {
+      revalidateOnReconnect: false,
+      revalidateOnFocus: false,
+      fallbackData: meetnetAccessTokenFromCookie
+        ? {
+            accessToken: meetnetAccessTokenFromCookie,
+          }
+        : undefined,
+    },
+  );
 
   // https://swr.vercel.app/docs/conditional-fetching
   const { data: currentMeetnetData, error: meetnetApiError } = useSWR(
     meetnetAccessTokenResponse
       ? ['meetnet/currentMeetnetData', meetnetAccessTokenResponse.accessToken]
       : null,
-    ([_url, accessToken]) => getCurrentMeetnetData(accessToken),
+    ([, accessToken]) => getCurrentMeetnetData(accessToken),
     { refreshInterval: 60 * 1000 },
   );
 

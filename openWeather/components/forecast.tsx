@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import { FC, useEffect, useState } from 'react';
+import Image from 'next/image';
 
 import WindArrow from '../../core/components/images/windArrow';
 import Grid from '../../core/components/structure/grid';
@@ -38,10 +38,10 @@ const Forecast: FC<Props> = ({
     <Grid
       style={style}
       items={[
-        <Time dateTimeMillis={predictionDate} />,
-        <WindArrow direction={windDirection} />,
-        <p>{roundedTemperature}°</p>,
-        <p>{windSpeed} m/s</p>,
+        <Time key="time" dateTimeMillis={predictionDate} />,
+        <WindArrow key="arrow" direction={windDirection} />,
+        <p key="temp">{roundedTemperature}°</p>,
+        <p key="wind">{windSpeed} m/s</p>,
         <>
           {weather.map((item, index) => (
             <Image key={index} src={item.image} alt={item.description} width={40} height={40} />

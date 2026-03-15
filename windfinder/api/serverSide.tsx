@@ -9,9 +9,8 @@ const getWindfinderApiKey = () => {
   return openWeatherApiKey;
 };
 
-const useMock = () => {
-  const useMock = process.env.WINDFINDER_USE_MOCK;
-  return Boolean(useMock === 'true');
+const shouldUseMock = () => {
+  return process.env.WINDFINDER_USE_MOCK === 'true';
 };
 
 export type superforecastsResponse = Array<{
@@ -34,7 +33,7 @@ export type Superforecast = ReturnType<typeof formatSuperforecast>;
 
 export async function getSuperforecasts() {
   const openWeatherApiKey = getWindfinderApiKey();
-  if (useMock()) {
+  if (shouldUseMock()) {
     return formatSuperforecast(data as superforecastsResponse);
   }
 
