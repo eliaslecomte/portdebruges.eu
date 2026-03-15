@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { parseCookies, setCookie } from 'nookies';
 import useSWR from 'swr';
 
 import Datetime from '../../core/components/info/datetime';
@@ -18,7 +17,10 @@ type Props = {
 };
 
 const MeetnetComponent = ({ setError, setWarning }: Props) => {
-  const meetnetAccessTokenFromCookie = parseCookies().meetnetAccessToken;
+  const meetnetAccessTokenFromCookie = document.cookie
+    .split('; ')
+    .find((row) => row.startsWith('meetnetAccessToken='))
+    ?.split('=')[1];
 
   // TODO: store these keys with the api methods
   // or move the useSWR to the api layer completely
@@ -66,10 +68,7 @@ const MeetnetComponent = ({ setError, setWarning }: Props) => {
       meetnetAccessTokenResponse?.accessToken &&
       meetnetAccessTokenResponse?.accessToken !== meetnetAccessTokenFromCookie
     ) {
-      setCookie(null, 'meetnetAccessToken', meetnetAccessTokenResponse.accessToken, {
-        maxAge: 60 * 60, // meetnet access tokens expire after 1 hour
-        path: '/',
-      });
+      document.cookie = `meetnetAccessToken=${meetnetAccessTokenResponse.accessToken}; max-age=${60 * 60}; path=/`;
     }
   }, [meetnetAccessTokenResponse, meetnetAccessTokenFromCookie]);
 
