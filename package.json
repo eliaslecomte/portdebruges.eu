@@ -12,16 +12,16 @@
     "format": "prettier . --write"
   },
   "dependencies": {
-    "autoprefixer": "10.4.13",
+    "autoprefixer": "10.4.27",
     "date-fns": "2.29.3",
     "date-fns-tz": "2.0.0",
     "next": "13.1.6",
     "nookies": "2.5.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "postcss": "8.4.21",
+    "postcss": "8.5.8",
     "postcss-preset-env": "8.0.1",
-    "swr": "2.0.3",
+    "swr": "2.4.1",
     "tailwindcss": "3.2.6"
   },
   "devDependencies": {
@@ -32,7 +32,7 @@
     "eslint-config-next": "13.1.6",
     "eslint-config-prettier": "8.6.0",
     "eslint-plugin-prettier": "4.2.1",
-    "eslint-plugin-jsx-a11y": "6.7.1",
+    "eslint-plugin-jsx-a11y": "6.10.2",
     "eslint-plugin-simple-import-sort": "10.0.0",
     "eslint": "8.34.0",
     "npm-check-updates": "16.7.4",
