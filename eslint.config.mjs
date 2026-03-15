@@ -5,7 +5,7 @@ import nextConfig from 'eslint-config-next';
 import prettierPlugin from 'eslint-plugin-prettier/recommended';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 
-export default [
+const config = [
   js.configs.recommended,
   ...nextConfig,
   prettierPlugin,
@@ -40,3 +40,5 @@ export default [
     },
   },
 ];
+
+export default config;

@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+import Link from 'next/link';
 
 type Props = {
   description: string;
@@ -17,7 +18,7 @@ const Error: FC<Props> = ({ description }) => {
       role="alert">
       <strong className="font-bold">Holy smokes! </strong>
       <span className="block sm:inline">
-        {description} <a href="/">Herlaad de pagina 🤪!</a>
+        {description} <Link href="/">Herlaad de pagina 🤪!</Link>
       </span>
       <span className="absolute top-0 bottom-0 right-0 px-4 py-3">
         <a onClick={() => setClosed(true)}>

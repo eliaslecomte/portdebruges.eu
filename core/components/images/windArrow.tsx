@@ -6,10 +6,12 @@ type Props = {
 
 const WindArrow: FC<Props> = ({ direction }) => {
   return (
+    // eslint-disable-next-line @next/next/no-img-element
     <img
       style={{ transform: `rotate(${direction}deg)` }}
       className="float-left mr-1"
       src="/weather/wind.svg"
+      alt="Wind direction arrow"
       width={40}
       height={40}
     />

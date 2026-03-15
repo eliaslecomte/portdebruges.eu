@@ -59,7 +59,7 @@ const MeetnetComponent = ({ setError, setWarning }: Props) => {
       setError();
       setWarning();
     }
-  }, [meetnetApiError]);
+  }, [meetnetApiError, refreshMeetnetAccessToken, setError, setWarning]);
 
   useEffect(() => {
     if (
@@ -71,26 +71,20 @@ const MeetnetComponent = ({ setError, setWarning }: Props) => {
         path: '/',
       });
     }
-  }, [meetnetAccessTokenResponse]);
+  }, [meetnetAccessTokenResponse, meetnetAccessTokenFromCookie]);
 
   const [isUpdated, setUpdated] = useState(false);
 
   useEffect(() => {
     if (currentMeetnetData?.measurementTaken) {
-      if (currentMeetnetData.measurementTaken > new Date(Date.now() - 60 * 1000)) {
-        setUpdated(true);
+      const isRecent = currentMeetnetData.measurementTaken > new Date(Date.now() - 60 * 1000);
+      if (isRecent) {
+        setUpdated(true); // eslint-disable-line react-hooks/set-state-in-effect
+        const timeout = setTimeout(() => setUpdated(false), 10 * 1000);
+        return () => clearTimeout(timeout);
       }
     }
   }, [currentMeetnetData]);
-
-  useEffect(() => {
-    if (isUpdated) {
-      const timeout = setTimeout(() => setUpdated(false), 10 * 1000);
-      return () => {
-        clearTimeout(timeout);
-      };
-    }
-  }, [isUpdated]);
 
   return (
     <Block

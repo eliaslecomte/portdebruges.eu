@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useMemo } from 'react';
 
 // Inspired on https://tailwindcss.com/docs/justify-items
 
@@ -8,21 +8,16 @@ type Props = {
 };
 
 export const Grid: FC<Props> = ({ style, items }) => {
-  const [gridStyle, setGridStyle] = useState<string>('');
-  useEffect(() => {
+  const gridStyle = useMemo(() => {
     switch (items.length) {
       case 5:
-        setGridStyle('grid-cols-5');
-        break;
+        return 'grid-cols-5';
       case 6:
-        setGridStyle('grid-cols-6');
-        break;
+        return 'grid-cols-6';
       default:
-        // TODO: grid-cols-5 as default and log console error?
-        setGridStyle('');
-        break;
+        return '';
     }
-  }, [items, setGridStyle]);
+  }, [items.length]);
 
   return (
     <div className={`grid ${gridStyle} gap-1 justify-items-auto ${style ? style : null}`}>
