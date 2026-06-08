@@ -11,3 +11,11 @@ In first phase we'll just fetch all data at runtime from different sources.
 - Meetnet
 - OpenWeatherMap
 - Windfinder
+
+## Update dependencies
+
+https://github.com/raineorshine/npm-check-updates
+
+```console
+npx npm-check-updates -u
+```
