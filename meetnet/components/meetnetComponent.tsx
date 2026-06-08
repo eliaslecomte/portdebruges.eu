@@ -16,14 +16,18 @@ type Props = {
   setWarning: Function;
 };
 
+// Cookies only exist in the browser; the page is statically prerendered, so on
+// the server there is no per-user cookie to read.
+const readMeetnetAccessTokenCookie = () =>
+  typeof document === 'undefined'
+    ? undefined
+    : document.cookie
+        .split('; ')
+        .find((row) => row.startsWith('meetnetAccessToken='))
+        ?.split('=')[1];
+
 const MeetnetComponent = ({ setError, setWarning }: Props) => {
-  const meetnetAccessTokenFromCookie =
-    typeof document === 'undefined'
-      ? undefined
-      : document.cookie
-          .split('; ')
-          .find((row) => row.startsWith('meetnetAccessToken='))
-          ?.split('=')[1];
+  const [meetnetAccessTokenFromCookie] = useState(readMeetnetAccessTokenCookie);
 
   // TODO: store these keys with the api methods
   // or move the useSWR to the api layer completely
