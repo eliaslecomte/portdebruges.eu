@@ -17,10 +17,13 @@ type Props = {
 };
 
 const MeetnetComponent = ({ setError, setWarning }: Props) => {
-  const meetnetAccessTokenFromCookie = document.cookie
-    .split('; ')
-    .find((row) => row.startsWith('meetnetAccessToken='))
-    ?.split('=')[1];
+  const meetnetAccessTokenFromCookie =
+    typeof document === 'undefined'
+      ? undefined
+      : document.cookie
+          .split('; ')
+          .find((row) => row.startsWith('meetnetAccessToken='))
+          ?.split('=')[1];
 
   // TODO: store these keys with the api methods
   // or move the useSWR to the api layer completely
