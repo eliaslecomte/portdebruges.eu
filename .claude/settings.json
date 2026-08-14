@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx npm-check-updates:*)",
+      "Bash(npm run:*)",
+      "Bash(git commit:*)",
+      "Bash(npx tsc:*)",
+      "Bash(find /d/Sources/portdebruges.eu/openWeather -type f -name *.tsx -o -name *.ts)",
+      "Bash(find /d/Sources/portdebruges.eu/windfinder -type f -name *.tsx -o -name *.ts)",
+      "Bash(npm install:*)",
+      "Bash(npx prettier:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(node -e \"const m = require\\(''eslint-config-next''\\); console.log\\(typeof m, Object.keys\\(m\\)\\)\")",
+      "Bash(node -e \"const m = require\\(''eslint-config-next''\\); console.log\\(JSON.stringify\\(m.map\\(c => Object.keys\\(c\\)\\), null, 2\\)\\)\")",
+      "Bash(node -e \"const c = require\\(''@eslint/compat''\\); console.log\\(Object.keys\\(c\\)\\)\")",
+      "Bash(npm ls:*)",
+      "Bash(npm view:*)",
+      "Bash(node -e \"const d=require\\(''''fs''''\\).readFileSync\\(''''/dev/stdin'''',''''utf8''''\\); const v=JSON.parse\\(d\\); console.log\\(v.slice\\(-5\\)\\)\")",
+      "Bash(mise ls:*)",
+      "Bash(mise install:*)",
+      "Bash(mise trust:*)",
+      "Bash(mise current:*)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\elias\\.claude\\projects\\d--Sources-portdebruges-eu"
+    ]
+  },
+  "enabledPlugins": {
+    "toolbox@elias-plugins": true
+  },
+  "extraKnownMarketplaces": {
+    "elias-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "eliaslecomte/claude-plugin"
+      }
+    }
+  }
+}
